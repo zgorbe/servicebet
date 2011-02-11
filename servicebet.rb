@@ -4,11 +4,7 @@ require 'do_postgres' if production?
 require 'partials'
 require 'sinatra/reloader' if development?
 
-
-get "/" do
-  "Welcome to service bet!"
-end
-
+load 'controller.rb'
 
 configure :development, :test do
   DataMapper.setup(:default, 'mysql://root@localhost:3306/servicebet?encoding=UTF-8')

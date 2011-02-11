@@ -11,4 +11,8 @@ group :development do
   gem "do_mysql", "0.10.1"
 end
 
+group :production do
+  gem "do_postgres", "0.10.1"
+end
+
 
