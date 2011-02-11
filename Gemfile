@@ -1,7 +1,7 @@
 source "http://rubygems.org"
-source "http://gems.github.com"
+source "http://gemcutter.org"
 
-gem "sinatra ", :git => "git://github.com/sinatra/sinatra.git"
+gem "sinatra", "1.1.2"
 gem "data_objects", "0.10.1"
 gem "dm-core", "0.10.1"
 
