@@ -1,10 +1,13 @@
+require 'rubygems'
 require 'sinatra'
 require 'dm-core'
 require 'do_mysql' if development?
 require 'do_postgres' if production?
+require 'authorization'
 require 'partials'
 require 'sinatra/reloader' if development?
 
+load 'models.rb'
 load 'controller.rb'
 
 configure :development, :test do
@@ -18,6 +21,8 @@ end
 
 
 helpers do
+  include Sinatra::Authorization
+  include Rack::Utils
   include Sinatra::Partials
 
   alias_method :h, :escape_html
