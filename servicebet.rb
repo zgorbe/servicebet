@@ -1,9 +1,9 @@
-#require 'sinatra'
-#require 'dm-core'
-#require 'do_mysql' if development?
-#require 'do_postgres' if production?
+require 'sinatra'
+require 'dm-core'
+require 'do_mysql' if development?
+require 'do_postgres' if production?
 require 'partials'
-#require 'sinatra/reloader' if development?
+require 'sinatra/reloader' if development?
 
 load 'controller.rb'
 
