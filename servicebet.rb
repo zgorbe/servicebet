@@ -17,7 +17,6 @@ configure :production do
 end
 
 
-
 helpers do
   include Sinatra::Partials
 
