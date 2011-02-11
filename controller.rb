@@ -1,7 +1,7 @@
 require 'erb'
 
 get "/" do
-  redirect request.url + "accounts"
+  redirect request.url + "servicebets"
 end
 
 get "/servicebets" do

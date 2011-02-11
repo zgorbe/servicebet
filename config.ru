@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'bundler'
 
-Bundler.require
+Bundler.setup
 
 require 'servicebet'
 run Sinatra::Application

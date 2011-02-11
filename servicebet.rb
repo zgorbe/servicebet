@@ -1,3 +1,4 @@
+require 'sinatra'
 require 'dm-core'
 require 'do_mysql' if development?
 require 'do_postgres' if production?
