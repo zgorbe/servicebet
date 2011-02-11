@@ -19,7 +19,7 @@ module Sinatra
   end
 
   def authorize(username, password)
-    if username.eql? 'gzotyo' and password.eql? 's1n4tr4fun'
+    if username.eql? 'admin' and password.eql? 'Ep4mR4z0r'
       return true
     end
     false
