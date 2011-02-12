@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title>ServiceBet</title>
+  <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/css/table.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="/js/jquery-1.4.2.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+</head>
+  <body onload="setnavigation();">
+  <div id="container">
+    <div id="navigation">
+      <ul>
+        <li><a id="a_home" href="/home">Home</a></li>
+        <li><a id="a_bets" href="/bets">Bets</a></li>
+        <li><a id="a_issues" href="/issues">Issues</a></li>
+        <li><a id="a_members" href="/members">Members</a></li>
+        <li><a id="a_top" href="/top">Toplist</a></li>
+      </ul>
+    </div>
+    <div id="content">
+      <%= yield %>
+    </div>
+    <div id="footer">
+      ServiceBet, 2011
+    </div>
+  </div>
+</body>
+</html>

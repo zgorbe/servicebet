@@ -1,0 +1,101 @@
+body {
+    font-family: helvetica, arial;
+    font-size: 16px;
+    background: #F5F7FA;
+    padding-top: 20px; 
+}
+
+#container
+{
+    margin: 0 auto;
+    width: 800px;
+    border: 1px solid #2E5186;
+}
+
+#header
+{
+    background:#ccc;
+    padding: 20px;
+}
+
+#header h1 { margin: 0; }
+
+#navigation
+{
+    float: left;
+    width: 800px;
+    background: #3760A8;
+    border-bottom: 1px solid #2E5186;
+}
+
+#navigation ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#navigation ul li {
+    list-style-type: none;
+    display: inline;
+}
+
+#navigation li a {
+    display: block;
+    float: left;
+    padding: 5px 10px;
+    color:#fff;
+    text-decoration: none;
+    border-right: 1px solid #fff;
+}
+
+#navigation li a:hover { 
+    background: #E0EFFD;
+    color: #000;
+}
+
+#content {
+    clear: left;
+    padding: 10px 30px;
+    line-height: 1.5;
+    text-align: justify;
+    background: #EDF5F7;
+}
+
+#content h3 {
+    background-color: #3760A8;;
+    width: auto;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 5px 0px 5px 0px;
+    margin: 0px;
+    line-height: 1em;
+    text-align: center;
+}
+
+#content a {
+    color: #3B5998;
+    font-weight: bold;
+}
+
+#content li {
+    padding: 10px;
+}
+
+#footer
+{
+    background: #3760A8;
+    color: white;
+    text-align: right;
+    padding: 15px;
+}
+
+#account_div {
+    padding: 5px;
+    
+    border: 1px solid #2E5186;
+}
+
+#content span{
+    font-size: xx-large;
+}
