@@ -1,4 +1,4 @@
-function hidden_submit() {
+/*function hidden_submit() {
   filterselect = document.getElementById('filter1')
   value = filterselect.options[filterselect.selectedIndex].value
   document.getElementById('actionfilter').value=value;
@@ -17,6 +17,7 @@ function select_click() {
    }
   });
 }
+*/
 
 function setnavigation() {
   url = document.location.href;
