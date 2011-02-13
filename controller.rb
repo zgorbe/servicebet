@@ -1,7 +1,7 @@
 require 'erb'
 require 'pony'
 
-before '/admin/?*' do
+before '/admin/*' do
   authorized = require_administrative_privileges
   session[:user] = 666 if authorized  #admin user_id is 666 ;)
   authorized
@@ -43,6 +43,10 @@ end
 get "/login" do
   session[:user] = nil
   erb :login, :layout => :layout_login
+end
+
+post "/login" do
+  "Not implemented yet"
 end
 
 get "/logout" do

@@ -1,1 +1,13 @@
-Please join servicebet.heroku.com
+Dear <%= @user.first_name %>,
+
+Please join servicebet.heroku.com!
+
+Your account has been created.
+
+  Username: <%=h @user.username %>
+  Password: <%=h @password %>
+  
+You will be asked to change your generated password at the first time when you login.
+
+Best wishes,
+ServiceBet

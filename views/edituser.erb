@@ -1,0 +1,21 @@
+<%= @message %>
+<form action="/admin/users" method="post">
+  <p>
+  Username:<br />
+  <input name="user[username]" size="30" type="text" value="<%= @user.username %>" />
+  </p>
+  <p>
+  First name:<br />
+  <input name="user[first_name]" size="30" type="text" value="<%= @user.first_name %>" />
+  </p>
+  <p>
+  Last name:<br />
+  <input name="user[last_name]" size="30" type="text" value="<%= @user.last_name %>" />
+  </p>
+  <p>
+  Email:<br />
+  <input name="user[email]" size="30" type="text" value="<%= @user.email %>" />
+  </p>
+  <input type="submit" value="Create user" />&nbsp;
+  <input type="button" value="Cancel" onclick="document.location='/admin'" />
+</form>
