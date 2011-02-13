@@ -3,3 +3,4 @@ dm-core --version 0.10.1
 data_objects --version 0.10.1
 do_mysql --version 0.10.1
 do_postgres --version 0.10.1
+pony --version 1.1
