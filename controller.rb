@@ -59,6 +59,6 @@ get "/email" do
     :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
     :domain => "HELO", # don't know exactly what should be here
     },
-    :subject => 'Invite to ServiceBet', :body => erb(:invite)
-) 
+    :subject => 'Invite to ServiceBet', :body => erb(:invite, :layout => false)
+  ) 
 end
