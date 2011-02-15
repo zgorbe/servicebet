@@ -12,12 +12,13 @@ end
 post "/admin/users" do
   @user = User.new(params[:user]) if params[:user]
   @password = generate_password
+  puts "User created: #{@user.username} - #{@password}"
   @user.password = Digest::MD5.hexdigest(@password)
   @user.last_login_at = Time.now
   @user.created_at = Time.now
   @user.updated_at = Time.now
   
-  if @user.save
+  if @user.save and params[:send_invite]
     Pony.mail(:to => @user.email, :via => :smtp, :via_options => {
         :address => 'smtp.gmail.com',
         :port => '587',

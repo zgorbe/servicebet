@@ -22,6 +22,22 @@
       </ul>
     </div>
     <div id="content">
+      <% if session[:pwd_change] %>
+      <div id="div_pwd_change">
+        Please change your password
+        <form action="/pwdchange" method="post">
+          <table>
+            <tr>
+              <td>New password:</td> <td colspan="2"><input name="password1" size="30" type="password" /></td>
+            </tr>
+            <tr>
+              <td>Password again:</td> <td> <input name="password2" size="30" type="password" /></td>
+              <td><input type="submit" value="Change password" /></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <% end %>
       <%= yield %>
     </div>
     <div id="footer">

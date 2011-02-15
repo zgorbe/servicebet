@@ -90,3 +90,7 @@ body {
     padding: 15px;
 }
 }
+
+#div_pwd_change {
+    border: 1px solid red;
+}

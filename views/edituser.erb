@@ -16,6 +16,10 @@
   Email:<br />
   <input name="user[email]" size="30" type="text" value="<%= @user.email %>" />
   </p>
+  <p>
+  Send invitation in email:
+  <input name="send_invite" type="checkbox" value="send_invite" checked />
+  </p>
   <input type="submit" value="Create user" />&nbsp;
   <input type="button" value="Cancel" onclick="document.location='/admin'" />
 </form>

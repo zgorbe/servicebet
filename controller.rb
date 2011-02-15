@@ -46,23 +46,33 @@ get "/login" do
 end
 
 post "/login" do
-  "Not implemented yet"
+  if params[:username] and params[:password]
+    user = authenticate_user(params[:username], params[:password])
+    if user.nil?
+      erb :login, :layout => :layout_login
+    else
+      session[:user] = user.id
+      session[:pwd_change] = user.pwd_change
+      redirect "/home"
+    end
+  else
+    erb :login, :layout => :layout_login
+  end
+  
 end
 
 get "/logout" do
   redirect "/login"
 end
 
-get "/email" do
-  Pony.mail(:to => 'gzolee@gmx.net', :via => :smtp, :via_options => {
-    :address => 'smtp.gmail.com',
-    :port => '587',
-    :enable_starttls_auto => true,
-    :user_name => 'epamrazor',
-    :password => 'Ep4mR4z0r',
-    :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
-    :domain => "HELO", # don't know exactly what should be here
-    },
-    :subject => 'Invite to ServiceBet', :body => erb(:invite, :layout => false)
-  ) 
+post "/pwdchange" do
+  if params[:password1] and params[:password2]
+    if params[:password1].eql? params[:password2] and params[:password1].length > 6
+      user = update_password(session[:user], params[:password1])
+      if user
+        session[:pwd_change] = user.pwd_change
+      end
+    end
+  end
+  redirect "/home"
 end
