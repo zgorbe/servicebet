@@ -14,9 +14,9 @@ post "/admin/users" do
   @password = generate_password
   puts "User created: #{@user.username} - #{@password}"
   @user.password = Digest::MD5.hexdigest(@password)
-  @user.last_login_at = Time.now
-  @user.created_at = Time.now
-  @user.updated_at = Time.now
+  @user.last_login_at = Time.now.utc
+  @user.created_at = Time.now.utc
+  @user.updated_at = Time.now.utc
   
   if @user.save and params[:send_invite]
     Pony.mail(:to => @user.email, :via => :smtp, :via_options => {
