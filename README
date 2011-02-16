@@ -3,7 +3,7 @@ To setup the project locally, you need to ensure you have the followings install
   - RubyGems
   - The gems that are listed in setup.sh
   
-The project architecture is quite simple. A Sinatra project can follow to styles, this project follows the classic style with config.ru file. 
+The project architecture is quite simple. A Sinatra project can follow two styles, this project follows the classic style with config.ru file. 
 The main file is the servicebet.rb. HTTP routes are defined in the controller.rb and admin.rb files. 
 DataMapper is used for persisting objects. DataMapper classes are defined in the models.rb.
 The persistence.rb contains the helper methods of the persistence layer. 
