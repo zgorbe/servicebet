@@ -94,3 +94,11 @@ body {
 #div_pwd_change {
     border: 1px solid red;
 }
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 5px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+
