@@ -17,5 +17,13 @@ module ServiceBet
       end
       return user
     end
+    
+    def reset_password(user_id, new_password)
+      user = User.get(user_id)
+      if user
+        user.update(:password => Digest::MD5.hexdigest(new_password), :pwd_change => true, :updated_at => Time.now.utc)
+      end
+      return user
+    end
   end
 end
