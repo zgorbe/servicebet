@@ -1,5 +1,4 @@
 require 'erb'
-require 'pony'
 
 before '/admin/?*' do
   authorized = require_administrative_privileges

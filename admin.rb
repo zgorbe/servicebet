@@ -1,4 +1,5 @@
 require 'digest/md5'
+require 'pony'
 
 get "/admin" do
   erb :admin
