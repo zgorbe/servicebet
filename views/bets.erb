@@ -1,2 +1,35 @@
-<h2>Your Bets</h2>
-<input type="text" name="date_text" id="date_text" value="" />
+<h2>You can place <%= @user.p1_counts %> P1 bets and <%= @user.p2_counts %> P2 bets</h2>
+<form action="/bets" method="post">
+  <p>
+    Priority:
+    <select name="bet[priority]">
+      <% if @user.p1_counts > 0 %>
+        <option value="1">1</option>
+      <% end %>
+      <% if @user.p2_counts > 0 %>
+        <option value="2">2</option>
+      <% end %>
+    </select>
+  </p>
+  <p>
+    Website:<br />
+    <select name="bet[website_id]">
+      <% @websites.each do |site| %>
+      <option value="<%= site.id %>"><%= h site.name%></option>
+      <% end %>
+    </select>
+  </p>
+  <p>
+    Issue start time:<br />
+    <input type="text" name="happens_at" id="date_text" value="" />
+  </p>
+  <input type="submit" value="Create bet" disabled="disabled" />&nbsp;
+</form>
+
+<script type="text/javascript">
+  $(function(){
+    $('#date_text').datetimepicker();			
+  });
+</script>
+
+

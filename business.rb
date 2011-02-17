@@ -21,6 +21,7 @@ module ServiceBet
       )
     end
     
+    #TODO - implement it :)    
     def get_winner_user_id
       0
     end

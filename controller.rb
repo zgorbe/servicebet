@@ -25,6 +25,8 @@ get "/home" do
 end
 
 get "/bets" do
+  @user = User.get(session[:user])
+  @websites = Website.all
   erb :bets
 end
 
