@@ -60,9 +60,9 @@ get "/admin/newwebsite" do
 end
 
 post "/admin/websites" do
-  website = Website.new(params[:website]) if params[:website]
-  website.created_at = Time.now.utc
-  if website.save
+  @website = Website.new(params[:website]) if params[:website]
+  @website.created_at = Time.now.utc
+  if @website.save
     redirect "/admin/websites"
   else
     @message = "Failed to save website!"
@@ -87,3 +87,37 @@ delete "/admin/websites/:id" do
   end  
   redirect "/admin"
 end
+
+get "/admin/newissue" do
+  @issue = Issue.new
+  @websites = Website.all
+  erb :editissue
+end
+
+post "/admin/issues" do
+  @issue = Issue.new(params[:issue]) if params[:issue]
+  @issue.occured_at = Time.parse(params[:occured_at]) if params[:occured_at]
+  @issue.created_at = Time.now.utc
+  
+  if @issue.occured_at < @issue.created_at
+    @message = "Issue start date can't be in the future!"
+    @websites = Website.all
+    erb :editissue
+  else
+    @issue.user_id = get_winner_user_id
+  
+    if @issue.save
+      redirect "/admin/issues"
+    else
+      @message = "Failed to save issue!"
+      @websites = Website.all
+      erb :editissue
+    end
+  end
+end
+
+get "/admin/issues" do
+  @issues = Issue.all
+  erb :adminissues
+end
+

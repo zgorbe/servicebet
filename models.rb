@@ -37,6 +37,7 @@ class Issue
   property :priority,      Integer
   property :occured_at,    Time
   property :created_at,    Time
+  property :description,   Text
   
   belongs_to :website
   belongs_to :user, :required => false

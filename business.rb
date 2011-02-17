@@ -8,7 +8,6 @@ module ServiceBet
     end
 
     def send_email(to_address, mail_body)
-
       Pony.mail(:to => to_address, :via => :smtp, :via_options => {
         :address => 'smtp.gmail.com',
         :port => '587',
@@ -20,7 +19,10 @@ module ServiceBet
         },
         :subject => 'Invite to ServiceBet', :body => mail_body
       )
-
+    end
+    
+    def get_winner_user_id
+      0
     end
   end
 end

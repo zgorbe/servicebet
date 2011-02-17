@@ -1,0 +1,21 @@
+<h2>Issues</h2>
+
+<table class="box-table-a">
+  <tr>
+    <th>Priority</th>
+    <th>Description</th>
+    <th>Started at</th>
+  </tr>
+
+<% @issues.each do |issue| %>
+  <tr>
+    <td>P<%=h issue.priority %></td>
+    <td><%=h issue.description %></td>
+    <td><%=h issue.occured_at %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <a href="/admin">Back</a>
+</p>

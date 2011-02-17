@@ -10,6 +10,7 @@ module ServiceBet
       end
       return nil
     end
+
     def update_password(user_id, password1)
       user = User.get(user_id)
       if user

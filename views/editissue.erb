@@ -1,0 +1,34 @@
+<%= @message %>
+<form action="/admin/issues" method="post">
+  <p>
+    Priority:
+    <select name="issue[priority]">
+      <option value="1">1</option>
+      <option value="2">2</option>
+    </select>
+  </p>
+  <p>
+    Website:<br />
+    <select name="issue[website_id]">
+      <% @websites.each do |site| %>
+      <option value="<%= site.id %>"><%= h site.name%></option>
+      <% end %>
+    </select>
+  </p>
+  <p>
+    Description:<br />
+    <textarea cols="60" name="issue[description]" rows="8"><%= @issue.description %></textarea>
+  </p>
+  <p>
+    Issue start time:<br />
+    <input type="text" name="occured_at" id="date_text" value="" />
+  </p>
+  <input type="submit" value="Add issue" />&nbsp;
+  <input type="button" value="Cancel" onclick="document.location='/admin'" />
+</form>
+
+<script type="text/javascript">
+  $(function(){
+    $('#date_text').datetimepicker();			
+  });
+</script>
