@@ -5,7 +5,7 @@ module Sinatra
     @auth ||= Rack::Auth::Basic::Request.new(request.env)
   end
 
-  def unauthorized!(realm="sinatrafan.heroku.com")
+  def unauthorized!(realm="servicebet.heroku.com")
     headers 'WWW-Authenticate' => %(Basic realm="#{realm}")
     throw :halt, [ 401, 'Authorization Required' ]
   end
