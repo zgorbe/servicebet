@@ -104,7 +104,7 @@ post "/admin/issues" do
     @websites = Website.all
     erb :editissue
   else
-    @issue.user_id = get_winner_user_id
+    @issue.user_id = get_winner_user_id  #we need to find out how to do this, or we can just ignore this field, if we think it's unnecessary
   
     if @issue.save
       redirect "/admin/issues"
