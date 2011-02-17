@@ -70,3 +70,12 @@ get "/admin/websites" do
   @websites = Website.all
   erb :adminwebsites
 end
+
+delete "/admin/websites/:id" do
+  website = Website.get(params[:id])
+  if website
+    puts "Delete website #{website.name}"
+    website.destroy
+  end  
+  redirect "/admin"
+end
