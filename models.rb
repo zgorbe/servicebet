@@ -40,7 +40,7 @@ class Issue
   property :description,   Text
   
   belongs_to :website
-  belongs_to :user, :required => false
+  belongs_to :user #, :required => false
 end
 
 class Bet
