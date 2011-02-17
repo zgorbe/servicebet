@@ -10,7 +10,7 @@
 <% @websites.each do |site| %>
   <tr>
     <td><%=h site.name %></td>
-    <td><%=h site.created_at %></td>
+    <td><%=h format_date(site.created_at) %></td>
     <td>
       <form action="/admin/websites/<%= site.id %>" method="post">
         <input type="hidden" name="_method" value="delete"/>

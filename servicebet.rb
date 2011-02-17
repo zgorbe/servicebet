@@ -35,7 +35,7 @@ helpers do
   alias_method :h, :escape_html
 
   def format_date(date)
-    time = date.utc + (60 * 60 * 2)
+    time = date.utc
     time.strftime('%Y-%m-%d %H:%M')
   end
 end

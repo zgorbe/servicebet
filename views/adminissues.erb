@@ -12,7 +12,7 @@
   <tr>
     <td>P<%=h issue.priority %></td>
     <td><%=h issue.description %></td>
-    <td><%=h issue.occured_at %></td>
+    <td><%=h format_date(issue.occured_at) %></td>
     <% if issue.user %>
       <td><%=h issue.user.username %></td>
       <% else %>

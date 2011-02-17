@@ -15,7 +15,7 @@
     <td><%=h user.username %></td>
     <td><%=h user.first_name %></td>
     <td><%=h user.last_name %></td>
-    <td><%=h user.last_login_at %></td>
+    <td><%=h format_date(user.last_login_at) %></td>
     <td>
       <form action="/admin/user/reset/<%= user.id %>" method="post">
         <input type="submit" name="submit" value="Reset"
