@@ -121,3 +121,12 @@ get "/admin/issues" do
   erb :adminissues
 end
 
+get "/admin/resetcounts" do
+  erb :adminresetcounts
+end
+
+post '/admin/resetcounts' do
+  reset_count = params[:reset_count] || 8
+  reset_bet_counts(reset_count)
+  redirect "/admin"
+end

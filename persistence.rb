@@ -26,5 +26,10 @@ module ServiceBet
       end
       return user
     end
+    
+    def reset_bet_counts(reset_count)
+      User.all.update(:p1_counts => reset_count)
+      User.all.update(:p2_counts => reset_count)
+    end
   end
 end
