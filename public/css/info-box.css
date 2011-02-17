@@ -1,0 +1,75 @@
+#login-form {
+	margin: 10em auto;
+        background-color: white;
+}
+
+.info-box {
+        font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+        font-size: 12px;
+	width: 400px;
+	border: 2px solid #E0EEFA;
+	margin: 10px;
+        line-height: 1;
+}
+
+.info-box-title {
+	background: none repeat scroll 0 0 #E0EEFA;
+	color: #165089;
+	font-weight: bold;
+	padding: 5px 10px; 
+}
+
+.info-box-content {
+	padding: 5px 10px;
+}
+
+.info-box-links {
+	padding: 5px 10px;
+	text-align: right;
+}
+
+.info-box-activities {
+	padding: 5px 10px;
+}
+
+.info-box-content .form-line label {
+	width: 6em;
+	float: left;
+	text-align: right;
+	padding-top: 0.2em;
+	margin-right: 0.1em;
+	display: block;
+}
+
+.info-box SELECT, .info-box TEXTAREA, .info-box INPUT
+{
+	margin-left: 0.5em;
+	margin-top: 0.2em;
+}
+.info-box .submit
+{
+	margin-left: 4em;
+}
+.info-box-content DIV.form-line
+{
+	/*height: 2em;*/
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.form-btn
+{
+	padding-top: 0.5em;
+	padding-right: 4.5em;
+	clear: left;
+	float: right;
+}
+#login-btn
+{
+	background-color: #2881B9;
+	color: #FFFFFF;
+	border-style: solid;
+	border-color: #47A0D8 #165089 #165089 #47A0D8;
+	text-align: center;
+	width: 75px;
+}

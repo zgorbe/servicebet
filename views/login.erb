@@ -1,13 +1,26 @@
-<b>Please login</b>
+<div id="login-form" class="info-box">
 
-<form action="/login" method="post">
-  <p>
-  Username:<br />
-  <input name="username" size="30" type="text" />
-  </p>
-  <p>
-  Password:<br />
-  <input name="password" size="30" type="password" />
-  </p>
-  <input type="submit" value="Login" />
-</form>
+	<div class="info-box-title">Register</div>
+  <fieldset>
+	<form action="/login" class="new_user" id="login_user" method="post">
+		<div class="info-box-content">
+			<div class="form-line">
+				<label for="username">Name:</label>
+				<input id="username" name="username" size="30" type="text" />
+			</div>
+      <div class="form-line">
+
+        <label for="userpassword">Password:</label>
+        <input id="userpassword" name="password" size="30" type="password" />
+      </div>
+        
+      
+	  </div>
+      <div class="form-btn">
+        <input class="submit" id="login-btn" type="submit" value="Login" />
+      </div>
+    </form>
+
+  </fieldset>
+
+</div>
