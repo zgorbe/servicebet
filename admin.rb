@@ -49,3 +49,24 @@ post "/admin/user/reset/:id" do
   end
   redirect "/admin/users"
 end
+
+get "/admin/newwebsite" do
+  @website = Website.new
+  erb :editwebsite
+end
+
+post "/admin/websites" do
+  website = Website.new(params[:website]) if params[:website]
+  website.created_at = Time.now.utc
+  if website.save
+    redirect "/admin/websites"
+  else
+    @message = "Failed to save website!"
+    erb :editwebsite
+  end
+end
+
+get "/admin/websites" do
+  @websites = Website.all
+  erb :adminwebsites
+end

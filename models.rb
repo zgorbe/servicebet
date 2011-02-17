@@ -14,6 +14,44 @@ class User
   property :last_login_at, Time
   property :created_at,    Time
   property :updated_at,    Time
+  
+  has n, :bets
+  has n, :issues
+end
+
+class Website
+  include DataMapper::Resource
+  
+  property :id,            Serial
+  property :name,          String, :unique_index => true
+  property :created_at,    Time
+  
+  has n, :issues
+  has n, :bets
+end
+
+class Issue
+  include DataMapper::Resource
+  
+  property :id,            Serial
+  property :priority,      Integer
+  property :occured_at,    Time
+  property :created_at,    Time
+  
+  belongs_to :website
+  belongs_to :user, :required => false
+end
+
+class Bet
+  include DataMapper::Resource
+  
+  property :id,            Serial
+  property :priority,      Integer
+  property :happens_at,    Time
+  property :created_at,    Time
+  
+  belongs_to :website
+  belongs_to :user
 end
 
 DataMapper.auto_upgrade!

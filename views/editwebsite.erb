@@ -1,0 +1,9 @@
+<%= @message %>
+<form action="/admin/websites" method="post">
+  <p>
+  Name of the website:<br />
+  <input name="website[name]" size="30" type="text" value="<%= @website.name %>" />
+  </p>
+  <input type="submit" value="Add website" />&nbsp;
+  <input type="button" value="Cancel" onclick="document.location='/admin'" />
+</form>

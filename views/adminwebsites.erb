@@ -1,0 +1,27 @@
+<h1>Supported Websites</h1>
+
+<table class="box-table-a">
+  <tr>
+    <th>Name</th>
+    <th>Created at</th>
+    <th>&nbsp</th>
+  </tr>
+
+<% @websites.each do |site| %>
+  <tr>
+    <td><%=h site.name %></td>
+    <td><%=h site.created_at %></td>
+    <td>
+      <form action="/admin/website/<%= site.id %>" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <input type="submit" name="submit" value="Delete"
+               onClick="return confirm('Are you sure you want to delete this site?');"/>
+      </form>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <a href="/admin">Back</a>
+</p>
