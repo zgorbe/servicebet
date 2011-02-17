@@ -32,8 +32,12 @@ end
 delete "/admin/user/:id" do
   user = User.get(params[:id])
   if user
-    puts "Delete user #{user.username}"
-    user.destroy
+    begin
+      puts "Delete user #{user.username}"
+      user.destroy
+    rescue
+      puts "Shit delete!"
+    end
   end  
   redirect "/admin"
 end
@@ -74,8 +78,12 @@ end
 delete "/admin/websites/:id" do
   website = Website.get(params[:id])
   if website
-    puts "Delete website #{website.name}"
-    website.destroy
+    begin
+      puts "Delete website #{website.name}"
+      website.destroy
+    rescue
+      puts "Shit delete!"
+    end
   end  
   redirect "/admin"
 end
