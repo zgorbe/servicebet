@@ -1,41 +1,68 @@
-<h2>You can place <%= @user.p1_counts %> P1 bets and <%= @user.p2_counts %> P2 bets</h2>
-<div id="bet-form" class="info-box">
-  <div class="info-box-title">Place your bets</div>
-  <fieldset>
-  <form action="/bets" method="post">
-    <div class="info-box-content">
-      <div class="form-line">
-        <label for="priority">Priority:</label>
-        <select name="bet[priority]">
-          <% if @user.p1_counts > 0 %>
-            <option value="1">1</option>
-          <% end %>
-          <% if @user.p2_counts > 0 %>
-            <option value="2">2</option>
-          <% end %>
-        </select>
+<% if @user.p1_counts > 0 or @user.p2_counts > 0 %>
+  <h3>You can place <%= @user.p1_counts %> P1 bets and <%= @user.p2_counts %> P2 bets for this month</h3>
+  <%= @message %>
+  <div id="bet-form" class="info-box">
+    <div class="info-box-title">Place your bets for issues</div>
+    <fieldset>
+    <form action="/bets" method="post">
+      <div class="info-box-content">
+        <div class="form-line">
+          <label for="priority">Priority:</label>
+          <select name="bet[priority]">
+            <% if @user.p1_counts > 0 %>
+              <option value="1">1</option>
+            <% end %>
+            <% if @user.p2_counts > 0 %>
+              <option value="2">2</option>
+            <% end %>
+          </select>
+        </div>
+        <div class="form-line">
+          <label for="website">Website:</label>
+          <select name="bet[website_id]">
+            <% @websites.each do |site| %>
+            <option value="<%= site.id %>"><%= h site.name%></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="form-line">
+          <label for="happens_at">Start time:</label>
+          <input type="text" name="happens_at" id="date_text" value="" />
+        </div>
       </div>
-      <div class="form-line">
-        <label for="website">Website:</label>
-        <select name="bet[website_id]">
-          <% @websites.each do |site| %>
-          <option value="<%= site.id %>"><%= h site.name%></option>
-          <% end %>
-        </select>
+      <div class="form-btn">
+        <input type="submit" id="bet-btn" value="Place the bet" />
       </div>
-      <div class="form-line">
-        <label for="happens_at">Issue start time:</label>
-        <input type="text" name="happens_at" id="date_text" value="" />
-      </div>
-    </div>
-    <div class="form-btn">
-      <input type="submit" id="bet-btn" value="Place the bet" />
-    </div>
-  </form>
-  </fieldset>
-</div>
-<script type="text/javascript">
-  $(function(){
-    $('#date_text').datetimepicker();			
-  });
-</script>
+    </form>
+    </fieldset>
+  </div>
+  <script type="text/javascript">
+    $(function(){
+      $('#date_text').datetimepicker();			
+    });
+  </script>
+<% else %>
+  <b>You have already placed all your bets for this month</b>
+<% end %>
+
+<% if @bets.size > 0 %>
+  <h3>Bets for this month</h3>
+
+  <table class="box-table-a">
+    <tr>
+      <th>Website</th>
+      <th>Priority</th>
+      <th>Starts at</th>
+    </tr>
+
+  <% @bets.each do |bet| %>
+    <tr>
+      <td><%=h bet.website.name %></td>
+      <td>P<%=h bet.priority %></td>
+      <td><%=h format_date(bet.happens_at) %></td>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <h3>You don't have any bets for this month</h3>
+<% end%>

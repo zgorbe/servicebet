@@ -26,7 +26,33 @@ end
 get "/bets" do
   @user = User.get(session[:user])
   @websites = Website.all
+  @bets = get_bets_for_current_month_by_user(@user.id)
   erb :bets
+end
+
+post '/bets' do
+  @bet = Bet.new(params[:bet]) if params[:bet]
+  @bet.happens_at = Time.parse(params[:happens_at]) if params[:happens_at] and !params[:happens_at].empty?
+  @bet.created_at = Time.now.utc
+  
+  @user = User.get(session[:user])
+  @bet.user = @user
+  @websites = Website.all
+  
+  #only validating if the date is in the current month, later the validation will only allow bets that are in the future and at least 24 hours later
+  if @bet.happens_at.nil? or @bet.happens_at.month != Time.now.utc.month
+    @message = 'You can only place bets for the current month!'
+  else
+    if @bet.save
+      user_placed_a_bet(@user, @bet.priority)
+      @message = 'Your bet is successfully saved!'
+    else
+      @message = 'Failed to place your bet!'
+    end
+  end
+  
+  @bets = get_bets_for_current_month_by_user(@user.id)
+  erb :bets  
 end
 
 get "/issues" do

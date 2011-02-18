@@ -31,5 +31,27 @@ module ServiceBet
       User.all.update(:p1_counts => reset_count)
       User.all.update(:p2_counts => reset_count)
     end
+    
+    def user_placed_a_bet(user, priority)
+      if priority == 1
+        user.update(:p1_counts => user.p1_counts - 1)
+      elsif priority == 2
+        user.update(:p2_counts => user.p2_counts - 1)
+      end
+    end
+    
+    #This method could be improved to let the db filter the bets, and not the code...
+    def get_bets_for_current_month_by_user(user_id)
+      year = Time.now.utc.year
+      month = Time.now.utc.month
+      bets = []
+      bet_list = Bet.all(:user_id => user_id, :order => [ :website_id,:happens_at.desc ])
+      bet_list.each do |bet|
+        if bet.happens_at.year == year and bet.happens_at.month == month
+          bets << bet
+        end
+      end
+      bets
+    end
   end
 end

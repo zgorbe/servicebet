@@ -61,18 +61,6 @@ body {
     background: #EDF5F7;
 }
 
-#content h3 {
-    background-color: #3760A8;;
-    width: auto;
-    color: white;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 5px 0px 5px 0px;
-    margin: 0px;
-    line-height: 1em;
-    text-align: center;
-}
-
 #content a {
     color: #3B5998;
     font-weight: bold;
