@@ -34,7 +34,7 @@ post '/bets' do
   @bet = Bet.new(params[:bet]) if params[:bet]
   t = Time.parse(params[:happens_at])
   puts "Parsed time: " + t.to_s
-  puts "utcoffset: " + t.utc_offset
+  puts "utcoffset: " + t.utc_offset.to_s
   puts "To utc: " + t.utc.to_s
   puts "Getutc: " + t.getutc.to_s
   @bet.happens_at = Time.parse(params[:happens_at]).getutc if params[:happens_at] and !params[:happens_at].empty?
