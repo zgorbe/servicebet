@@ -39,7 +39,7 @@ post '/bets' do
     @bet.happens_at = t2 + offset
     puts "Time.now.utc: " + Time.now.utc.to_s
     puts "Parsed time: " + t.to_s
-    puts "utcoffset: " + t.utc_offset.to_s
+    puts "utcoffset: " + offset.to_s
     puts "To utc: " + t.utc.to_s
     puts "Getutc: " + t.getutc.to_s
     puts "Bet.happens_at: " + @bet.happens_at.to_s
