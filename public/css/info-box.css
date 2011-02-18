@@ -1,15 +1,23 @@
 #login-form {
 	margin: 10em auto;
-        background-color: white;
+  background-color: white;
+}
+
+#bet-form {
+  background-color: white;
+}
+
+#bet-form fieldset {
+  border: none;
 }
 
 .info-box {
-        font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
-        font-size: 12px;
+  font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+  font-size: 12px;
 	width: 400px;
 	border: 2px solid #E0EEFA;
 	margin: 10px;
-        line-height: 1;
+  line-height: 1;
 }
 
 .info-box-title {
@@ -72,4 +80,13 @@
 	border-color: #47A0D8 #165089 #165089 #47A0D8;
 	text-align: center;
 	width: 75px;
+}
+#bet-btn
+{
+	background-color: #2881B9;
+	color: #FFFFFF;
+	border-style: solid;
+	border-color: #47A0D8 #165089 #165089 #47A0D8;
+	text-align: center;
+	width: 100px;
 }
