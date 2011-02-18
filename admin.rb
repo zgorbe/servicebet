@@ -97,10 +97,16 @@ end
 
 post "/admin/issues" do
   @issue = Issue.new(params[:issue]) if params[:issue]
-  @issue.occured_at = Time.parse(params[:occured_at]) if params[:occured_at]
+  t = Time.parse(params[:occured_at]) if params[:occured_at] and !params[:occured_at].empty?
+  if t
+    offset = t.utc_offset
+    t2 = t.utc
+    @issue.occured_at = t2 + offset
+  end
+  
   @issue.created_at = Time.now.utc
   
-  if (@issue.occured_at <=> @issue.created_at) == 1
+  if @issue.occured_at and (@issue.occured_at <=> @issue.created_at) == 1
     @message = "Issue start date can't be in the future!"
     @websites = Website.all
     erb :editissue
