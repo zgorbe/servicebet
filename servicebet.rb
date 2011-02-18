@@ -35,6 +35,6 @@ helpers do
   alias_method :h, :escape_html
 
   def format_date(date)
-    time.strftime('%Y-%m-%d %H:%M')
+    date.strftime('%Y-%m-%d %H:%M')
   end
 end
