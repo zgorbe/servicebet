@@ -82,16 +82,15 @@ body {
     padding: 10px;
 }
 
-#footer
-{
+#footer {
     background: #3760A8;
     color: white;
     text-align: right;
     padding: 15px;
 }
-}
 
 #div_pwd_change {
+    padding: 5px;
     border: 1px solid red;
 }
 
