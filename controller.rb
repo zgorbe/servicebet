@@ -32,7 +32,7 @@ end
 
 post '/bets' do
   @bet = Bet.new(params[:bet]) if params[:bet]
-  @bet.happens_at = Time.parse(params[:happens_at]).utc if params[:happens_at] and !params[:happens_at].empty?
+  @bet.happens_at = Time.parse(params[:happens_at]).getutc if params[:happens_at] and !params[:happens_at].empty?
   @bet.created_at = Time.now.utc
   
   @user = User.get(session[:user])
