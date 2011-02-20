@@ -106,20 +106,26 @@ post "/admin/issues" do
   
   @issue.created_at = Time.now.utc
   
-  if @issue.occured_at and (@issue.occured_at <=> @issue.created_at) == 1
-    @message = "Issue start date can't be in the future!"
-    @websites = Website.all
-    erb :editissue
-  else
-    @issue.user_id = get_winner_user_id(@issue)
-  
-    if @issue.save
-      redirect "/admin/issues"
-    else
-      @message = "Failed to save issue!"
+  if @issue.occured_at 
+    if (@issue.occured_at <=> @issue.created_at) == 1
+      @message = "Issue start date can't be in the future!"
       @websites = Website.all
       erb :editissue
+    else
+      @issue.user_id = get_winner_user_id(@issue)
+  
+      if @issue.save
+        redirect "/admin/issues"
+      else
+        @message = "Failed to save issue!"
+        @websites = Website.all
+        erb :editissue
+      end
     end
+  else
+    @message = "Please select a start date!"
+    @websites = Website.all
+    erb :editissue
   end
 end
 
