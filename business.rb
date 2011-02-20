@@ -21,8 +21,23 @@ module ServiceBet
       )
     end
     
-    #TODO - implement it :)    
-    def get_winner_user_id
+    def get_winner_user_id(issue)
+      bets = get_bets_for_current_month_by_condition({:priority => issue.priority, :website_id => issue.website_id, :order => [ :created_at ] })
+      if bets.size > 0
+        best_bet = bets[0]
+        best_delta = (issue.occured_at - best_bet.happens_at).abs
+        bets.each do |bet|
+          delta = (issue.occured_at - bet.happens_at).abs
+          if delta < best_delta
+            best_bet = bet
+            best_delta = delta
+          end
+        end
+        #only if the best bet is closer than 12 hours
+        if best_delta < (12 * 60 * 60)
+          return best_bet.user_id
+        end
+      end
       0
     end
   end

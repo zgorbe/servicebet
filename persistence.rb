@@ -41,11 +41,11 @@ module ServiceBet
     end
     
     #This method could be improved to let the db filter the bets, and not the code...
-    def get_bets_for_current_month_by_user(user_id)
+    def get_bets_for_current_month_by_condition(condition)
       year = Time.now.utc.year
       month = Time.now.utc.month
       bets = []
-      bet_list = Bet.all(:user_id => user_id, :order => [ :website_id,:happens_at.desc ])
+      bet_list = Bet.all(condition)
       bet_list.each do |bet|
         if bet.happens_at.year == year and bet.happens_at.month == month
           bets << bet
@@ -53,5 +53,6 @@ module ServiceBet
       end
       bets
     end
+    
   end
 end
