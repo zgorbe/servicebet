@@ -32,17 +32,18 @@ end
 
 post '/bets' do
   @bet = Bet.new(params[:bet]) if params[:bet]
-  t = Time.parse(params[:happens_at]) if params[:happens_at] and !params[:happens_at].empty?
+  t = Time.parse(params[:happens_at] + " UTC") if params[:happens_at] and !params[:happens_at].empty?
   if t
-    offset = t.utc_offset
-    t2 = t.utc
-    @bet.happens_at = t2 + offset
-    puts "Time.now.utc: " + Time.now.utc.to_s
+    @bet.happens_at = t
+    #offset = t.utc_offset
+    #t2 = t.utc
+    #@bet.happens_at = t2 + offset
+    #puts "Time.now.utc: " + Time.now.utc.to_s
     puts "Parsed time: " + t.to_s
-    puts "utcoffset: " + offset.to_s
-    puts "To utc: " + t.utc.to_s
-    puts "Getutc: " + t.getutc.to_s
-    puts "Bet.happens_at: " + @bet.happens_at.to_s
+    #puts "utcoffset: " + offset.to_s
+    #puts "To utc: " + t.utc.to_s
+    #puts "Getutc: " + t.getutc.to_s
+    #puts "Bet.happens_at: " + @bet.happens_at.to_s
   end
   @bet.created_at = Time.now.utc
   

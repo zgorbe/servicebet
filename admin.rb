@@ -97,11 +97,12 @@ end
 
 post "/admin/issues" do
   @issue = Issue.new(params[:issue]) if params[:issue]
-  t = Time.parse(params[:occured_at]) if params[:occured_at] and !params[:occured_at].empty?
+  t = Time.parse(params[:occured_at] + " UTC") if params[:occured_at] and !params[:occured_at].empty?
   if t
-    offset = t.utc_offset
-    t2 = t.utc
-    @issue.occured_at = t2 + offset
+    @issue.occured_at = t
+    #offset = t.utc_offset
+    #t2 = t.utc
+    #@issue.occured_at = t2 + offset
   end
   
   @issue.created_at = Time.now.utc
