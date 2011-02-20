@@ -114,7 +114,8 @@ post "/admin/issues" do
       erb :editissue
     else
       @issue.user_id = get_winner_user_id(@issue)
-  
+      user_bet_won(@issue.user_id)  if @issue.user_id > 0
+
       if @issue.save
         redirect "/admin/issues"
       else

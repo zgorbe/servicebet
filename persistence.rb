@@ -54,5 +54,11 @@ module ServiceBet
       bets
     end
     
+    def user_bet_won(user_id)
+      user = User.get(user_id)
+      if user
+        user.update(:bet_balance => user.bet_balance + 1)
+      end
+    end
   end
 end

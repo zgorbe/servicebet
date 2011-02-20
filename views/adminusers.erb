@@ -5,6 +5,7 @@
     <th>User</th>
     <th>Firstname</th>
     <th>Lastname</th>
+    <th>Bet balance</th>
     <th>Last login</th>
     <th>&nbsp</th>
     <th>&nbsp</th>
@@ -15,6 +16,7 @@
     <td><%=h user.username %></td>
     <td><%=h user.first_name %></td>
     <td><%=h user.last_name %></td>
+    <td><%=h user.bet_balance %></td>
     <td><%=h format_date(user.last_login_at) %></td>
     <td>
       <form action="/admin/user/reset/<%= user.id %>" method="post">
