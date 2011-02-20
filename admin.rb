@@ -40,7 +40,7 @@ delete "/admin/user/:id" do
       puts "Shit delete!"
     end
   end  
-  redirect "/admin"
+  redirect "/admin/users"
 end
 
 post "/admin/user/reset/:id" do
@@ -86,7 +86,7 @@ delete "/admin/websites/:id" do
       puts "Shit delete!"
     end
   end  
-  redirect "/admin"
+  redirect "/admin/websites"
 end
 
 get "/admin/newissue" do
@@ -142,4 +142,21 @@ post '/admin/resetcounts' do
   reset_count = params[:reset_count] || 8
   reset_bet_counts(reset_count)
   redirect "/admin"
+end
+
+get "/admin/bets" do
+  @bets = Bet.all(:order => [ :created_at.desc ])
+  erb :adminbets
+end
+
+delete "/admin/bets/:id" do
+  bet = Bet.get(params[:id])
+  if bet
+    begin
+      bet.destroy
+    rescue
+      puts "Shit delete!"
+    end
+  end  
+  redirect "/admin/bets"
 end
