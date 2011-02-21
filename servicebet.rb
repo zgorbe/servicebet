@@ -8,8 +8,10 @@ require 'persistence'
 require 'business'
 require 'partials'
 require 'sinatra/reloader' if development?
+require 'hoptoad_notifier'
 
 enable :sessions
+enable :raise_errors
 
 configure :development, :test do |config|
   DataMapper.setup(:default, 'mysql://root@localhost:3306/servicebet?encoding=UTF-8')
@@ -19,6 +21,10 @@ end
 
 configure :production do
   DataMapper.setup(:default, ENV['DATABASE_URL'] + '?encoding=UTF-8')
+end
+
+HoptoadNotifier.configure do |config|
+  config.api_key = 'b471baf164d04c4a3f4d0bf276444163908b008c'
 end
 
 load 'models.rb'
