@@ -92,6 +92,7 @@ post "/login" do
     else
       session[:user] = user.id
       session[:pwd_change] = user.pwd_change
+      #update_bets_if_necessary()
       redirect "/home"
     end
   else

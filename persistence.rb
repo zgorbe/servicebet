@@ -60,5 +60,57 @@ module ServiceBet
         user.update(:bet_balance => user.bet_balance + 1)
       end
     end
+
+    def update_bets_if_necessary()
+      #Select all bets which are 'older' than 12 hours, these can't impacted by a future issue anymore
+      pending_bets = Bet.all(:status => 'NEW', :happens_at.lt => Time.now - 12*60*60)
+      pending_bets.each do | bet |
+        puts " *** Pending #{bet.id}"
+      end
+
+      #select b.* from issues i, bets b
+      #where b.happens_at > i.occured_at - 12*60*60
+      #and b.happens_at < i.occured_at + 12*60*60
+      #order by abs(b.happens_at - i.occured_at)
+
+      #What if nobody logs in for 24 hours?
+      last_24h_issues = Issue.all(:occured_at.gt => Time.now - 60*60*24)
+
+      winner_bet_ids = []
+
+      #Go through on every issue in the last 24 hour and search for bets in their 24-hour range
+      #with the same priority and website
+      last_24h_issues.each do |issue|
+        bets_in_range = Bet.all(:status => 'NEW',
+                            :priority => issue.priority,
+                            :website => issue.website,
+                            :happens_at.gt => issue.occured_at - 12*60*60,
+                            :happens_at.lt => issue.occured_at + 12*60*60
+                           )
+        bets_in_range.each {|b| puts " in range #{b.id}"} if bets_in_range
+        
+        #Check which is the closest bet to the current issue
+        winner = bets_in_range.min {|a,b| (a.happens_at - issue.occured_at).abs <=> (b.happens_at - issue.occured_at).abs}
+        puts " *** WINNER!!!! #{issue.id} --> #{winner.id}" if winner
+
+        #We found a winner, let's store it's ID
+        winner_bet_ids << winner.id
+
+        #TODO how we will attached the winner bet to the issue? Should this done here?
+      end
+
+      puts "WINNER bet ids: #{winner_bet_ids.inspect}"
+
+      #Go through on bets and set all of them to WINNED or LOST in the database
+      pending_bets.each do |bet|
+        puts " *** status #{bet.id} -> #{bet.status}"
+        if winner_bet_ids.include? bet.id
+          bet.update(:status => 'WINNED')
+        else
+          bet.update(:status => 'LOST')
+        end
+      end
+
+    end
   end
 end
