@@ -11,7 +11,6 @@ require 'sinatra/reloader' if development?
 require 'hoptoad_notifier'
 
 enable :sessions
-enable :raise_errors
 
 configure :development, :test do |config|
   DataMapper.setup(:default, 'mysql://root@localhost:3306/servicebet?encoding=UTF-8')
@@ -30,6 +29,11 @@ end
 load 'models.rb'
 load 'controller.rb'
 load 'admin.rb'
+
+error do
+  exception = request.env['sinatra.error']
+  HoptoadNotifier.notify exception
+end
 
 helpers do
   include ServiceBet::Persistence
