@@ -7,6 +7,7 @@
     <th>Priority</th>
     <th>Starts at</th>
     <th>Created at</th>
+    <th>Status</th>
     <th>&nbsp</th>
   </tr>
 
@@ -17,6 +18,7 @@
     <td>P<%=h bet.priority %></td>
     <td><%=h format_date(bet.happens_at) %></td>
     <td><%=h format_date(bet.created_at) %></td>
+    <td><%=h bet.status %></td>
     <td>
       <form action="/admin/bets/<%= bet.id %>" method="post">
         <input type="hidden" name="_method" value="delete"/>

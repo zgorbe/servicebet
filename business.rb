@@ -21,8 +21,10 @@ module ServiceBet
       )
     end
     
-    def get_winner_user_id(issue)
-      bets = get_bets_for_current_month_by_condition({:priority => issue.priority, :website_id => issue.website_id, :order => [ :created_at ] })
+    # This method searches for the winner bet for an issue, updates the winner bet's status, and returns the winner's user_id
+    def find_winner_user_bet(issue)
+      bets = get_bets_for_current_month_by_condition({:priority => issue.priority, :website_id => issue.website_id, 
+                :happens_at.gt => issue.occured_at - 12*60*60, :happens_at.lt => issue.occured_at + 12*60*60, :order => [ :created_at ] })
       if bets.size > 0
         best_bet = bets[0]
         best_delta = (issue.occured_at - best_bet.happens_at).abs
@@ -33,10 +35,8 @@ module ServiceBet
             best_delta = delta
           end
         end
-        #only if the best bet is closer than 12 hours
-        if best_delta < (12 * 60 * 60)
-          return best_bet.user_id
-        end
+        update_winner_bet(best_bet)
+        return best_bet.user_id
       end
       0
     end

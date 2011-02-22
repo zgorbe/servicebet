@@ -60,6 +60,10 @@ module ServiceBet
         user.update(:bet_balance => user.bet_balance + 1)
       end
     end
+    
+    def update_winner_bet(bet)
+      bet.update(:status => 'WINNED')
+    end
 
     def update_bets_if_necessary()
       #Select all bets which are 'older' than 12 hours, these can't impacted by a future issue anymore

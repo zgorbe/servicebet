@@ -113,7 +113,7 @@ post "/admin/issues" do
       @websites = Website.all
       erb :editissue
     else
-      @issue.user_id = get_winner_user_id(@issue)
+      @issue.user_id = find_winner_user_bet(@issue)
       user_bet_won(@issue.user_id)  if @issue.user_id > 0
 
       if @issue.save

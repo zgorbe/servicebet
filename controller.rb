@@ -116,3 +116,7 @@ post "/pwdchange" do
   end
   redirect "/home"
 end
+
+get "/hoptoad" do
+  raise "Test hoptoad error"
+end
