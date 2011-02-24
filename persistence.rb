@@ -40,18 +40,15 @@ module ServiceBet
       end
     end
     
-    #This method could be improved to let the db filter the bets, and not the code...
+    #This method returns the bets that are created in the current month
     def get_bets_for_current_month_by_condition(condition)
       year = Time.now.utc.year
       month = Time.now.utc.month
-      bets = []
-      bet_list = Bet.all(condition)
-      bet_list.each do |bet|
-        if bet.happens_at.year == year and bet.happens_at.month == month
-          bets << bet
-        end
-      end
-      bets
+      t1 = Time.parse(Date.new(year, month, 1).to_s + " 00:00:00 UTC")
+      t2 = Time.parse(Date.new(year, month, -1).to_s + " 23:59:59 UTC")
+      condition[:created_at.gt] = t1
+      condition[:created_at.lt] = t2
+      Bet.all(condition)
     end
     
     def user_bet_won(user_id)
