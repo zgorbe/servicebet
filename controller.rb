@@ -69,6 +69,16 @@ get "/issues" do
   erb :issues
 end
 
+get "/issue/:id" do
+  @user = User.get(session[:user])
+  @issue = Issue.get(params[:id])
+  if @issue
+    erb :issue
+  else
+    redirect "/issues"
+  end
+end
+
 get "/members" do
   erb :users
 end

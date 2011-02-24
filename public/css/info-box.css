@@ -1,23 +1,25 @@
 #login-form {
-	margin: 10em auto;
-  background-color: white;
+    margin: 10em auto;
 }
 
 #bet-form {
   background-color: white;
 }
 
-#bet-form fieldset {
-  border: none;
+#issue-info {
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 75px;
 }
 
 .info-box {
-  font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
-  font-size: 12px;
-	width: 400px;
-	border: 2px solid #E0EEFA;
-	margin: 10px;
-  line-height: 1;
+    font-family: Verdana,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    width: 400px;
+    border: 2px solid #E0EEFA;
+    margin: 10px;
+    line-height: 1;
+    background-color: white;
 }
 
 .info-box-title {
@@ -52,7 +54,7 @@
 .info-box SELECT, .info-box TEXTAREA, .info-box INPUT
 {
 	margin-left: 0.5em;
-	margin-top: 0.2em;
+	padding-top: 0.2em;
 }
 .info-box .submit
 {
@@ -63,6 +65,22 @@
 	/*height: 2em;*/
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
+}
+
+.info-box-content .form-line .prop {
+    width: 8em;
+    float: left;
+    text-align: right;
+    padding-top: 0.2em;
+    margin-right: 0.5em;
+    margin-left: 1em;
+
+    font-weight: bold;
+}
+
+.info-box-content .form-line .prop-value {
+    padding-top: 0.2em;
+    margin-left: 10em;
 }
 
 .form-btn

@@ -5,6 +5,7 @@
 
   <table class="box-table-a">
     <tr>
+      <th>&nbsp;</th>
       <th>Site</th>
       <th>Priority</th>
       <th>Date</th>
@@ -14,6 +15,7 @@
 
   <% @issues.each do |issue| %>
     <tr <%= 'class="own"' if issue.user && issue.user == @user %>>
+      <td><a href="/issue/<%= issue.id %>"><img alt="View issue details" src="/images/view.png"/></a></td>
       <td><%=h issue.website.name %></td>
       <td>P<%=h issue.priority %></td>
       <td><%=h format_date(issue.occured_at) %></td>

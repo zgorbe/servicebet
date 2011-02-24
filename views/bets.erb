@@ -59,7 +59,13 @@
 
   <% @bets.each do |bet| %>
     <tr>
-      <td><%=h bet.website.name %></td>
+      <td>
+        <% if bet.issue %>
+          <a href="/issue/<%= bet.issue.id %>"><%=h bet.website.name %></a>
+        <% else %>
+          <%=h bet.website.name %>
+        <% end %>
+      </td>
       <td>P<%=h bet.priority %></td>
       <td><%=h format_date(bet.happens_at) %></td>
       <td class="status_<%=h bet.status.downcase %>"><%=h bet.status %></td>
