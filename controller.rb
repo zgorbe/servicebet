@@ -64,6 +64,8 @@ post '/bets' do
 end
 
 get "/issues" do
+  @user = User.get(session[:user])
+  @issues = Issue.all
   erb :issues
 end
 
@@ -90,7 +92,7 @@ post "/login" do
       session[:pwd_change] = user.pwd_change
       update_bet_counts_if_necessary(user)
       update_last_login(user)
-      #update_bets_if_necessary()
+      update_outdated_bets()
       redirect "/home"
     end
   else

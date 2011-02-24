@@ -1,1 +1,34 @@
 <h3>Issues</h3>
+<p>
+  <% if @issues.size > 0 %>
+  <h3>Bets for this month</h3>
+
+  <table class="box-table-a">
+    <tr>
+      <th>Site</th>
+      <th>Priority</th>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Winner</th>
+    </tr>
+
+  <% @issues.each do |issue| %>
+    <tr>
+      <td><%=h issue.website.name %></td>
+      <td>P<%=h issue.priority %></td>
+      <td><%=h format_date(issue.occured_at) %></td>
+      <td><%=h issue.description %></td>
+      <% if issue.user %>
+        <td><%=h issue.user.username %></td>
+      <% else %>
+        <td>nobody</td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <h3>Yuppee, there were no issues in this month! :)</h3>
+<% end%>
+</p>
+
+
