@@ -62,7 +62,7 @@
       <td><%=h bet.website.name %></td>
       <td>P<%=h bet.priority %></td>
       <td><%=h format_date(bet.happens_at) %></td>
-      <td><%=h bet.status %></td>
+      <td class="status_<%=h bet.status.downcase %>"><%=h bet.status %></td>
     </tr>
   <% end %>
   </table>

@@ -31,3 +31,17 @@
 .box-table-a a:hover {
   text-decoration: underline;
 }
+
+.box-table-a td.status_new {
+    background-color: #89fab4;
+    color: #016f2a;
+}
+.box-table-a td.status_lost {
+    background-color: #faa389;
+    color: #9c0109;
+}
+
+.box-table-a td.status_winned {
+    background-color: #f5cf36;
+    color: white;
+}
