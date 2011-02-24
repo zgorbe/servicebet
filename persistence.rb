@@ -4,7 +4,6 @@ module ServiceBet
       user = User.first(:username => username)
       if user
         if Digest::MD5.hexdigest(password).eql? user.password
-          user.update(:last_login_at => Time.now.utc)
           return user
         end
       end
@@ -27,9 +26,14 @@ module ServiceBet
       return user
     end
     
-    def reset_bet_counts(reset_count)
-      User.all.update(:p1_counts => reset_count)
-      User.all.update(:p2_counts => reset_count)
+    def reset_bet_counts(reset_count, user=nil)
+      if user
+        user.update(:p1_counts => reset_count)
+        user.update(:p2_counts => reset_count)
+      else
+        User.all.update(:p1_counts => reset_count)
+        User.all.update(:p2_counts => reset_count)
+      end
     end
     
     def user_placed_a_bet(user, priority)
@@ -60,7 +64,11 @@ module ServiceBet
     def update_winner_bet(bet)
       bet.update(:status => 'WINNED')
     end
-
+    
+    def update_last_login(user)
+      user.update(:last_login_at => Time.now.utc)
+    end
+    
     def update_bets_if_necessary()
       #Select all bets which are 'older' than 12 hours, these can't impacted by a future issue anymore
       pending_bets = Bet.all(:status => 'NEW', :happens_at.lt => Time.now - 12*60*60)
