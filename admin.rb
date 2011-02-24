@@ -100,9 +100,6 @@ post "/admin/issues" do
   t = Time.parse(params[:occured_at] + " UTC") if params[:occured_at] and !params[:occured_at].empty?
   if t
     @issue.occured_at = t
-    #offset = t.utc_offset
-    #t2 = t.utc
-    #@issue.occured_at = t2 + offset
   end
   
   @issue.created_at = Time.now.utc

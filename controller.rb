@@ -35,15 +35,6 @@ post '/bets' do
   t = Time.parse(params[:happens_at] + " UTC") if params[:happens_at] and !params[:happens_at].empty?
   if t
     @bet.happens_at = t
-    #offset = t.utc_offset
-    #t2 = t.utc
-    #@bet.happens_at = t2 + offset
-    #puts "Time.now.utc: " + Time.now.utc.to_s
-    puts "Parsed time: " + t.to_s
-    #puts "utcoffset: " + offset.to_s
-    #puts "To utc: " + t.utc.to_s
-    #puts "Getutc: " + t.getutc.to_s
-    #puts "Bet.happens_at: " + @bet.happens_at.to_s
   end
   @bet.created_at = Time.now.utc
   
@@ -55,6 +46,7 @@ post '/bets' do
   if @bet.happens_at.nil? or @bet.happens_at.month != Time.now.utc.month
     @message = 'You can only place bets for the current month!'
   else
+    @bet.issue_id = 0
     if @bet.save
       user_placed_a_bet(@user, @bet.priority)
       @message = 'Your bet is successfully saved!'
@@ -63,7 +55,7 @@ post '/bets' do
     end
   end
   
-  @bets = get_bets_for_current_month_by_condition({:user_id => @user.id, :order => [ :website_id,:happens_at.desc ]})
+  @bets = get_bets_for_month_by_condition({:user_id => @user.id, :order => [ :website_id,:happens_at.desc ]})
   erb :bets  
 end
 

@@ -41,6 +41,7 @@ class Issue
   
   belongs_to :website
   belongs_to :user #, :required => false
+  has 1, :bet
 end
 
 class Bet
@@ -54,6 +55,7 @@ class Bet
   
   belongs_to :website
   belongs_to :user
+  belongs_to :issue
 end
 
 DataMapper.auto_upgrade!

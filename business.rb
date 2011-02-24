@@ -36,6 +36,8 @@ module ServiceBet
           end
         end
         update_winner_bet(best_bet)
+        #when the issue will be saved, the bet will be updated too
+        issue.bet = best_bet
         return best_bet.user_id
       end
       0
