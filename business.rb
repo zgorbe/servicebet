@@ -23,7 +23,7 @@ module ServiceBet
     
     # This method searches for the winner bet for an issue, updates the winner bet's status, and returns the winner's user_id
     def find_winner_user_bet(issue)
-      bets = get_bets_for_current_month_by_condition({:priority => issue.priority, :website_id => issue.website_id, 
+      bets = get_bets_for_month_by_condition({:priority => issue.priority, :website_id => issue.website_id, 
                 :happens_at.gt => issue.occured_at - 12*60*60, :happens_at.lt => issue.occured_at + 12*60*60, :order => [ :created_at ] })
       if bets.size > 0
         best_bet = bets[0]

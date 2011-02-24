@@ -41,9 +41,8 @@ module ServiceBet
     end
     
     #This method returns the bets that are created in the current month
-    def get_bets_for_current_month_by_condition(condition)
-      year = Time.now.utc.year
-      month = Time.now.utc.month
+    #if year and month is not passed, then the current year and month is used
+    def get_bets_for_month_by_condition(condition, year=Time.now.utc.year, month=Time.now.utc.month)
       t1 = Time.parse(Date.new(year, month, 1).to_s + " 00:00:00 UTC")
       t2 = Time.parse(Date.new(year, month, -1).to_s + " 23:59:59 UTC")
       condition[:created_at.gt] = t1
