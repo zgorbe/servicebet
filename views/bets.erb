@@ -1,6 +1,6 @@
 <h3>You have <%= @user.bet_balance %> winner bets!</h3>
 <% if @user.p1_counts > 0 or @user.p2_counts > 0 %>
-  <b>You can place <%= @user.p1_counts %> P1 bets and <%= @user.p2_counts %> P2 bets for this month</b>
+  <b>You can place <%= @user.p1_counts %> P1 bets and <%= @user.p2_counts %> P2 bets for this month</b><br />
   <%= @message %>
   <div id="bet-form" class="info-box">
     <div class="info-box-title">Place your bets for issues</div>
