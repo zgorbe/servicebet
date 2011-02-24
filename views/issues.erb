@@ -1,7 +1,7 @@
 <h3>Issues</h3>
 <p>
   <% if @issues.size > 0 %>
-  <h3>Bets for this month</h3>
+  <h3>Issues for this month</h3>
 
   <table class="box-table-a">
     <tr>
@@ -13,7 +13,7 @@
     </tr>
 
   <% @issues.each do |issue| %>
-    <tr>
+    <tr <%= 'class="own"' if issue.user && issue.user == @user %>>
       <td><%=h issue.website.name %></td>
       <td>P<%=h issue.priority %></td>
       <td><%=h format_date(issue.occured_at) %></td>

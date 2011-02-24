@@ -49,3 +49,7 @@
     background-color: #f5cf36;
     color: white;
 }
+
+.box-table-a tr.own {    
+    background-color: #fed67c;
+}
