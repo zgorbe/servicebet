@@ -1,5 +1,6 @@
+<h3>You have <%= @user.bet_balance %> winner bets!</h3>
 <% if @user.p1_counts > 0 or @user.p2_counts > 0 %>
-  <h3>You can place <%= @user.p1_counts %> P1 bets and <%= @user.p2_counts %> P2 bets for this month</h3>
+  <b>You can place <%= @user.p1_counts %> P1 bets and <%= @user.p2_counts %> P2 bets for this month</b>
   <%= @message %>
   <div id="bet-form" class="info-box">
     <div class="info-box-title">Place your bets for issues</div>
@@ -53,6 +54,7 @@
       <th>Website</th>
       <th>Priority</th>
       <th>Starts at</th>
+      <th>Status</th>
     </tr>
 
   <% @bets.each do |bet| %>
@@ -60,6 +62,7 @@
       <td><%=h bet.website.name %></td>
       <td>P<%=h bet.priority %></td>
       <td><%=h format_date(bet.happens_at) %></td>
+      <td><%=h bet.status %></td>
     </tr>
   <% end %>
   </table>
