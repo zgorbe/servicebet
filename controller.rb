@@ -43,7 +43,11 @@ post '/bets' do
   @websites = Website.all
   
   #only validating if the date is in the current month, later the validation will only allow bets that are in the future and at least 24 hours later
-  if @bet.happens_at.nil? or @bet.happens_at.month != Time.now.utc.month
+  if @bet.happens_at.nil? 
+    @message = 'Please set the start time of the issue!'
+  elsif (@bet.happens_at - Time.now.utc) < (12 * 60 * 60)
+    @message = 'You can place bets only later than 12 hours!'
+  elsif @bet.happens_at.month != Time.now.utc.month
     @message = 'You can only place bets for the current month!'
   else
     @bet.issue_id = 0
