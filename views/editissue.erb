@@ -1,31 +1,54 @@
 <%= @message %>
-<form action="/admin/issues" method="post">
-  <p>
-    Priority:
-    <select name="issue[priority]">
-      <option value="1">1</option>
-      <option value="2">2</option>
-    </select>
-  </p>
-  <p>
-    Website:<br />
-    <select name="issue[website_id]">
-      <% @websites.each do |site| %>
-      <option value="<%= site.id %>"><%= h site.name%></option>
+<div id="issue-form" class="info-box" style="width:auto">
+  <div class="info-box-title">
+    <% if @edit %>
+      Edit issue description
+    <% else %>
+      Insert issue details
+    <% end %>
+  </div>
+  <fieldset>
+    <form action="<%= if @edit then "/admin/issue/#{@issue.id}" else "/admin/issues" end %>" method="post">
+      <% if @edit %>
+        <input type="hidden" name="_method" value="put"/>
       <% end %>
-    </select>
-  </p>
-  <p>
-    Description:<br />
-    <textarea cols="60" name="issue[description]" rows="8"><%= @issue.description %></textarea>
-  </p>
-  <p>
-    Issue start time:<br />
-    <input type="text" name="occured_at" id="date_text" value="" />
-  </p>
-  <input type="submit" value="Add issue" />&nbsp;
-  <input type="button" value="Cancel" onclick="document.location='/admin'" />
-</form>
+      <div class="info-box-content">
+        <div class="form-line">
+          <label for="priority">Priority:</label>
+          <select name="issue[priority]" <%= 'disabled="disabled"' if @edit %> >
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+        </div>
+        <div class="form-line">
+          <label for="website_id">Website:</label>
+          <select name="issue[website_id]" <%= 'disabled="disabled"' if @edit %> >
+            <% @websites.each do |site| %>
+              <option value="<%= site.id %>"><%= h site.name%></option>
+            <% end %>
+          </select>
+        </div>
+        <div class="form-line">
+          <label for="description">Description:</label>
+          <textarea cols="60" name="issue[description]" rows="8"><%= @issue.description %></textarea>
+        </div>
+        <div class="form-line">
+          <label for="occured_at">Issue start time:</label>
+          <input type="text" name="issue[occured_at]" id="date_text" value="<%=h format_date(@issue.occured_at) if @edit%> " <%= 'disabled="disabled"' if @edit %>/>
+        </div>
+      </div>
+      <div class="form-btn">
+        <% if !@edit %>
+          <input type="submit" value="Add issue" />&nbsp;
+          <input type="button" value="Cancel" onclick="document.location='/admin'" />
+        <% else %>
+          <input type="submit" value="Update issue" />&nbsp;
+          <input type="button" value="Back" onclick="document.location='/admin/issues'" />
+        <% end %>
+      </div>
+   </form>
+  </fieldset>
+</div>
 
 <script type="text/javascript">
   $(function(){

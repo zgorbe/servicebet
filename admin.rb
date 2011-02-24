@@ -92,6 +92,7 @@ end
 get "/admin/newissue" do
   @issue = Issue.new
   @websites = Website.all
+  @edit = false
   erb :editissue
 end
 
@@ -131,6 +132,25 @@ end
 get "/admin/issues" do
   @issues = Issue.all
   erb :adminissues
+end
+
+get "/admin/issue/:id" do
+  @issue = Issue.get(params[:id])
+  @websites = [@issue.website]
+  @edit = true
+  erb :editissue
+end
+
+put "/admin/issue/:id" do
+  @issue = Issue.get(params[:id])
+  #There is an unnecessary update if the field is intact
+  if @issue.update(:description => params[:issue][:description])
+    redirect "/admin/issues"
+  else
+    @message = "Failed to update issue"
+    erb :editissue
+  end
+
 end
 
 get "/admin/resetcounts" do
