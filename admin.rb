@@ -101,9 +101,11 @@ post "/admin/issues" do
   t = Time.parse(params[:occured_at] + " UTC") if params[:occured_at] and !params[:occured_at].empty?
   if t
     @issue.occured_at = t
+    puts "Issue occured at: " + t.to_s
   end
   
   @issue.created_at = Time.now.utc
+  puts "Time.now.utc: " + @issue.created_at.to_s
   
   if @issue.occured_at 
     if (@issue.occured_at <=> @issue.created_at) == 1
