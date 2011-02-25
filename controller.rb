@@ -66,7 +66,7 @@ end
 
 get "/issues" do
   @user = User.get(session[:user])
-  @issues = Issue.all
+  @issues = get_issues_for_month_by_condition
   erb :issues
 end
 
