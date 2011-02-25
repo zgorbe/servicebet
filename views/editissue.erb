@@ -8,7 +8,7 @@
     <% end %>
   </div>
   <fieldset>
-    <form action="<%= if @edit then "/admin/issue/#{@issue.id}" else "/admin/issues" end %>" method="post">
+    <form action="<%= if @edit then "/admin/issues/#{@issue.id}" else "/admin/issues" end %>" method="post">
       <% if @edit %>
         <input type="hidden" name="_method" value="put"/>
       <% end %>

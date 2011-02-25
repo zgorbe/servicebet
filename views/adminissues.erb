@@ -13,7 +13,7 @@
   <tr>
     <td><%=h issue.website.name %></td>
     <td>P<%=h issue.priority %></td>
-    <td><a href="/admin/issue/<%= issue.id %>"><%=h issue.description %></a></td>
+    <td><a href="/admin/issues/<%= issue.id %>"><%=h issue.description %></a></td>
     <td><%=h format_date(issue.occured_at) %></td>
     <% if issue.user %>
       <td><%=h issue.user.username %></td>

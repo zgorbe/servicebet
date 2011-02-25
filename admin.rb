@@ -134,14 +134,14 @@ get "/admin/issues" do
   erb :adminissues
 end
 
-get "/admin/issue/:id" do
+get "/admin/issues/:id" do
   @issue = Issue.get(params[:id])
   @websites = [@issue.website]
   @edit = true
   erb :editissue
 end
 
-put "/admin/issue/:id" do
+put "/admin/issues/:id" do
   @issue = Issue.get(params[:id])
   #There is an unnecessary update if the field is intact
   if @issue.update(:description => params[:issue][:description])

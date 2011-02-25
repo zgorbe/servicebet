@@ -69,7 +69,7 @@ get "/issues" do
   erb :issues
 end
 
-get "/issue/:id" do
+get "/issues/:id" do
   @user = User.get(session[:user])
   @issue = Issue.get(params[:id])
   if @issue
