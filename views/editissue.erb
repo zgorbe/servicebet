@@ -34,7 +34,7 @@
         </div>
         <div class="form-line">
           <label for="occured_at">Start time:</label>
-          <input type="text" name="issue[occured_at]" id="date_text" value="<%=h format_date(@issue.occured_at) if @edit%> " <%= 'disabled="disabled"' if @edit %>/>
+          <input type="text" name="occured_at" id="date_text" value="<%=h format_date(@issue.occured_at) if @edit%> " <%= 'disabled="disabled"' if @edit %>/>
         </div>
       </div>
       <div class="form-btn">
