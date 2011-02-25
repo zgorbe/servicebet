@@ -20,6 +20,7 @@ get "/" do
 end
 
 get "/home" do
+  @issues = get_latest_issues
   erb :home
 end
 

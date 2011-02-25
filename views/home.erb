@@ -5,3 +5,23 @@ If you can visit this site, then you were invited to join ServiceBet. The purpos
 <p>
 The aim of the ServiceBet site is to make the life in the Service Desk more cheerful, and to have a website that the Service Desk members develop together.  
 </p>
+<h3>Latest issues</h3>
+<table class="box-table-a">
+  <tr>
+    <th>&nbsp;</th>
+    <th>Site</th>
+    <th>Priority</th>
+    <th>Date</th>
+    <th>Description</th>
+  </tr>
+
+<% @issues.each do |issue| %>
+  <tr>
+    <td><a href="/issues/<%= issue.id %>"><img alt="View issue details" src="/images/view.png"/></a></td>
+    <td><%=h issue.website.name %></td>
+    <td>P<%=h issue.priority %></td>
+    <td><%=h format_date(issue.occured_at) %></td>
+    <td><%=h issue.description %></td>
+  </tr>
+<% end %>
+</table>

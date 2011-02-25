@@ -33,7 +33,7 @@
           <textarea cols="60" name="issue[description]" rows="8"><%= @issue.description %></textarea>
         </div>
         <div class="form-line">
-          <label for="occured_at">Issue start time:</label>
+          <label for="occured_at">Start time:</label>
           <input type="text" name="issue[occured_at]" id="date_text" value="<%=h format_date(@issue.occured_at) if @edit%> " <%= 'disabled="disabled"' if @edit %>/>
         </div>
       </div>

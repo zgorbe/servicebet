@@ -77,5 +77,9 @@ module ServiceBet
         bet.update(:status => 'LOST')
       end
     end
+    
+    def get_latest_issues
+      Issue.all(:order => [:occured_at.desc], :limit => 3)
+    end
   end
 end
