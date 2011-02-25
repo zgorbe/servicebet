@@ -66,7 +66,7 @@ end
 
 get "/issues" do
   @user = User.get(session[:user])
-  @issues = get_issues_for_month_by_condition
+  @issues = get_issues_for_month_by_condition({:order => [:occured_at.desc]})
   erb :issues
 end
 
