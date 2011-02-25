@@ -1,0 +1,6 @@
+# Logfile created on Fri Feb 25 14:33:11 +0100 2011 by logger.rb/22285
+[02/25/11 14:33:11 Central Europe Standard Time ephudebw0004 (5136)] INFO : Dispatcher: webrick
+[02/25/11 14:33:11 Central Europe Standard Time ephudebw0004 (5136)] INFO : Application: servicebet
+[02/25/11 14:33:11 Central Europe Standard Time ephudebw0004 (5136)] WARN : Agent configured not to send data in this environment - edit newrelic.yml to change this
+[02/25/11 14:33:11 Central Europe Standard Time ephudebw0004 (5136)] INFO : New Relic RPM Agent 2.13.4 Initialized: pid = 5136
+[02/25/11 14:33:11 Central Europe Standard Time ephudebw0004 (5136)] INFO : Agent Log found in D:/servicebet/log/newrelic_agent.log

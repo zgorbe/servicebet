@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'newrelic_rpm'
 require 'dm-core'
 require 'do_mysql' if development?
 require 'do_postgres' if production?
