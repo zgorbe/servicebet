@@ -70,7 +70,7 @@ module ServiceBet
     end
     
     def update_winner_bet(bet)
-      bet.update(:status => 'WINNED')
+      bet.update(:status => 'WON')
     end
     
     def update_last_login(user)

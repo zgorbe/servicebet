@@ -51,7 +51,7 @@ class Bet
   property :priority,      Integer
   property :happens_at,    Time
   property :created_at,    Time
-  property :status,        String, :default => 'NEW' #NEW, WINNED, LOST
+  property :status,        String, :default => 'NEW' #NEW, WON, LOST
   
   belongs_to :website
   belongs_to :user
