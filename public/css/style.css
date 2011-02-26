@@ -13,13 +13,29 @@ body {
     border: 1px solid #2E5186;
 }
 
-#header
+#header_container
 {
-    background:#ccc;
-    padding: 20px;
+    background: #E0EFFD;
+    padding: 15px;
+    border-bottom: 1px solid #2E5186;
 }
 
-#header h1 { margin: 0; }
+#header
+{
+    float: left;
+}
+#header_container h3 { margin: 0; }
+
+#logout
+{
+    text-align: right;
+}
+
+#logout a {
+    color: #3B5998;
+    font-weight: bold;
+    text-decoration: none;
+}
 
 #navigation
 {
@@ -43,7 +59,7 @@ body {
 #navigation li a {
     display: block;
     float: left;
-    padding: 5px 10px;
+    padding: 8px 10px;
     color:#fff;
     text-decoration: none;
     border-right: 1px solid #fff;
@@ -54,6 +70,11 @@ body {
     color: #000;
 }
 
+#viewing {
+    padding: 5px 10px;
+    color:#fff;
+    text-align: right;
+}
 #content {
     clear: left;
     padding: 10px 30px;
