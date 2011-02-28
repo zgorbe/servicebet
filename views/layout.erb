@@ -37,10 +37,10 @@
       <% if request.path_info =~ /bets$/ or request.path_info =~ /issues$/ %>
         <div id="viewing">
           Viewing
-          <select name="viewing" >
+          <select id="filter1" name="filter1" onchange="javascript:hidden_submit()">
             <option value="1">Current month</option>
-            <option value="2011-02">2011.02</option>
-            <option value="2011-01">2011.01</option>
+            <option value="2011-2">2011.02</option>
+            <option value="2011-1">2011.01</option>
           </select>
         </div>
       <% end %>
@@ -68,5 +68,10 @@
       ServiceBet, 2011
     </div>
   </div>
+  <% if request.path_info =~ /bets$/ or request.path_info =~ /issues$/ %>
+    <form id="hiddenform1" action="<%= request.path_info %>" method="GET">
+    <input type="hidden" id="viewingfilter" name="viewingfilter" />
+  </form>
+  <% end %>
 </body>
 </html>

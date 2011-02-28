@@ -1,10 +1,10 @@
-/*function hidden_submit() {
+function hidden_submit() {
   filterselect = document.getElementById('filter1')
   value = filterselect.options[filterselect.selectedIndex].value
-  document.getElementById('actionfilter').value=value;
+  document.getElementById('viewingfilter').value=value;
   document.getElementById('hiddenform1').submit();
 }
-
+/*
 function select_click() {
    filterselect = document.getElementById('filter1')
    value = filterselect.options[filterselect.selectedIndex].value

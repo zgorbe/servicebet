@@ -27,7 +27,12 @@ end
 get "/bets" do
   @user = User.get(session[:user])
   @websites = Website.all
-  @bets = get_bets_for_month_by_condition({:user_id => @user.id, :order => [ :website_id,:happens_at.desc ]})
+  if params[:viewingfilter].nil? or params[:viewingfilter].eql? '1'
+    @bets = get_bets_for_month_by_condition({:user_id => @user.id, :order => [ :website_id,:happens_at.desc ]})
+  else
+    date_info = params[:viewingfilter].split('-')
+    @bets = get_bets_for_month_by_condition({:user_id => @user.id, :order => [ :website_id,:happens_at.desc ]}, date_info[0].to_i, date_info[1].to_i)
+  end
   erb :bets
 end
 
