@@ -1,23 +1,28 @@
-function hidden_submit() {
-  filterselect = document.getElementById('filter1')
-  value = filterselect.options[filterselect.selectedIndex].value
-  document.getElementById('viewingfilter').value=value;
-  document.getElementById('hiddenform1').submit();
-}
-/*
-function select_click() {
+function select_click_bets() {
    filterselect = document.getElementById('filter1')
    value = filterselect.options[filterselect.selectedIndex].value
    $.ajax({
    type: "GET",
-   data: "actionfilter="+value,
-   url: '/actions/filter',
+   data: "viewingfilter="+value,
+   url: '/bets',
    success: function(data, type, xmlhttp){
-     $("#div_actions").html(data);
+     $("#div_bets").html(data);
    }
   });
 }
-*/
+
+function select_click_issues() {
+   filterselect = document.getElementById('filter1')
+   value = filterselect.options[filterselect.selectedIndex].value
+   $.ajax({
+   type: "GET",
+   data: "viewingfilter="+value,
+   url: '/issues',
+   success: function(data, type, xmlhttp){
+     $("#div_issues").html(data);
+   }
+  });
+}
 
 function setnavigation() {
   url = document.location.href;

@@ -1,37 +1,4 @@
-<h3>Issues</h3>
-<p>
-  <% if @issues.size > 0 %>
-  <b>Issues for this month</b>
-
-  <table class="box-table-a">
-    <tr>
-      <th>&nbsp;</th>
-      <th>Site</th>
-      <th>Priority</th>
-      <th>Date</th>
-      <th>Description</th>
-      <th>Winner</th>
-    </tr>
-
-  <% @issues.each do |issue| %>
-    <tr <%= 'class="own"' if issue.user && issue.user == @user %>>
-      <td><a href="/issues/<%= issue.id %>"><img alt="View issue details" src="/images/view.png"/></a></td>
-      <td><%=h issue.website.name %></td>
-      <td>P<%=h issue.priority %></td>
-      <td><%=h format_date(issue.occured_at) %></td>
-      <td><%=h issue.description %></td>
-      <% if issue.user %>
-        <td><%=h issue.user.username %></td>
-      <% else %>
-        <td>nobody</td>
-      <% end %>
-    </tr>
-  <% end %>
-  </table>
-<% else %>
-  <h3>Yuppee, there were no issues in this month! :)</h3>
-<% end%>
-</p>
+<div id="div_issues">
+  <%= partial(:issuespartial) %>
+</div>
 <br />
-
-

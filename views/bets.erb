@@ -46,33 +46,7 @@
   <b>You have already placed all your bets for this month</b>
 <% end %>
 
-<% if @bets.size > 0 %>
-  <h3>Bets for this month</h3>
-
-  <table class="box-table-a">
-    <tr>
-      <th>Website</th>
-      <th>Priority</th>
-      <th>Starts at</th>
-      <th>Status</th>
-    </tr>
-
-  <% @bets.each do |bet| %>
-    <tr>
-      <td>
-        <% if bet.issue %>
-          <a href="/issues/<%= bet.issue.id %>"><%=h bet.website.name %></a>
-        <% else %>
-          <%=h bet.website.name %>
-        <% end %>
-      </td>
-      <td>P<%=h bet.priority %></td>
-      <td><%=h format_date(bet.happens_at) %></td>
-      <td class="status_<%=h bet.status.downcase %>"><%=h bet.status %></td>
-    </tr>
-  <% end %>
-  </table>
-<% else %>
-  <h3>You don't have any bets for this month</h3>
-<% end%>
+<div id="div_bets">
+  <%= partial(:betspartial) %>
+</div>
 <br />
