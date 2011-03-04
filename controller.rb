@@ -96,6 +96,7 @@ get "/issues/:id" do
 end
 
 get "/members" do
+  @users = User.all(:order => [ :username.desc ])
   erb :users
 end
 
