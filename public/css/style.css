@@ -71,7 +71,7 @@ body {
 }
 
 #viewing {
-    padding-top: 3px;
+    padding: 3px 3px 0px 0px;
     color:#fff;
     text-align: right;
 }
