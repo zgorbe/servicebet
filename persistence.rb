@@ -87,7 +87,7 @@ module ServiceBet
     end
     
     def get_latest_issues
-      Issue.all(:order => [:occured_at.desc], :limit => 3)
+      Issue.all(:order => [:occured_at.desc], :limit => 5)
     end
     
   end
