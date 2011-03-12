@@ -24,6 +24,19 @@ function select_click_issues() {
   });
 }
 
+function select_click_adminissues() {
+   filterselect = document.getElementById('filter1')
+   value = filterselect.options[filterselect.selectedIndex].value
+   $.ajax({
+   type: "GET",
+   data: "viewingfilter="+value,
+   url: '/admin/issues',
+   success: function(data, type, xmlhttp){
+     $("#div_issues").html(data);
+   }
+  });
+}
+
 function setnavigation() {
   url = document.location.href;
   var navelement;

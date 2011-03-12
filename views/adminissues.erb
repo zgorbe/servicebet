@@ -1,29 +1,4 @@
-<h3>Issues</h3>
-
-<table class="box-table-a">
-  <tr>
-    <th>Website</th>
-    <th>Priority</th>
-    <th>Description</th>
-    <th>Started at</th>
-    <th>Winner</th>
-  </tr>
-
-<% @issues.each do |issue| %>
-  <tr>
-    <td><%=h issue.website.name %></td>
-    <td>P<%=h issue.priority %></td>
-    <td><a href="/admin/issues/<%= issue.id %>"><%=h issue.description %></a></td>
-    <td><%=h format_date(issue.occured_at) %></td>
-    <% if issue.user %>
-      <td><%=h issue.user.username %></td>
-      <% else %>
-      <td>-</td>
-    <% end %>
-  </tr>
-<% end %>
-</table>
-
-<p>
-  <a href="/admin">Back</a> - <a href="/admin/newissue">New issue</a>
-</p>
+<div id="div_issues">
+  <%= partial(:adminissuesp) %>
+</div>
+<br />

@@ -132,8 +132,16 @@ post "/admin/issues" do
 end
 
 get "/admin/issues" do
-  @issues = Issue.all
-  erb :adminissues
+  @viewingfilter = params[:viewingfilter] || '1'
+
+  if @viewingfilter.eql? '1'
+    @issues = get_issues_for_month_by_condition({:order => [ :occured_at.desc ]})
+  else
+    date_info = @viewingfilter.split('-')
+    @issues = get_issues_for_month_by_condition({:order => [ :occured_at.desc ]}, date_info[0].to_i, date_info[1].to_i)
+  end
+
+  (request.xhr?) ? (partial :adminissuesp) : (erb :adminissues)
 end
 
 get "/admin/issues/:id" do
