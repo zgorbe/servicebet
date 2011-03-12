@@ -1,0 +1,35 @@
+<h3>Bets</h3>
+
+<table class="box-table-a">
+  <tr>
+    <th>User</th>
+    <th>Website</th>
+    <th>Priority</th>
+    <th>Starts at</th>
+    <th>Created at</th>
+    <th>Status</th>
+    <th>&nbsp</th>
+  </tr>
+
+<% @bets.each do |bet| %>
+  <tr>
+    <td><%=h bet.user.username %></td>
+    <td><%=h bet.website.name %></td>
+    <td>P<%=h bet.priority %></td>
+    <td><%=h format_date(bet.happens_at) %></td>
+    <td><%=h format_date(bet.created_at) %></td>
+    <td><%=h bet.status %></td>
+    <td>
+      <form action="/admin/bets/<%= bet.id %>" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <input type="submit" name="submit" value="Delete"
+               onClick="return confirm('Are you sure you want to delete this bet?');"/>
+      </form>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+  <a href="/admin">Back</a>
+</p>

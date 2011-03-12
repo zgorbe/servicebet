@@ -174,8 +174,15 @@ post '/admin/resetcounts' do
 end
 
 get "/admin/bets" do
-  @bets = Bet.all(:order => [ :created_at.desc ])
-  erb :adminbets
+  @viewingfilter = params[:viewingfilter] || '1'
+  if @viewingfilter.eql? '1'
+    @bets = get_bets_for_month_by_condition({:order => [ :user_id.desc,:website_id,:happens_at.desc ]})
+  else
+    date_info = @viewingfilter.split('-')
+    @bets = get_bets_for_month_by_condition({:order => [ :user_id.desc,:website_id,:happens_at.desc ]}, date_info[0].to_i, date_info[1].to_i)
+  end
+
+  (request.xhr?) ? (partial :adminbetsp) : (erb :adminbets)
 end
 
 delete "/admin/bets/:id" do

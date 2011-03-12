@@ -11,6 +11,19 @@ function select_click_bets() {
   });
 }
 
+function select_click_adminbets() {
+   filterselect = document.getElementById('filter1')
+   value = filterselect.options[filterselect.selectedIndex].value
+   $.ajax({
+   type: "GET",
+   data: "viewingfilter="+value,
+   url: '/admin/bets',
+   success: function(data, type, xmlhttp){
+     $("#div_bets").html(data);
+   }
+  });
+}
+
 function select_click_issues() {
    filterselect = document.getElementById('filter1')
    value = filterselect.options[filterselect.selectedIndex].value
