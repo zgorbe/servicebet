@@ -4,6 +4,7 @@
   <tr>
     <th>User</th>
     <th>Name</th>
+    <th>Wins</th>
     <th>Free bet count</th>
     <th>Last login</th>
   </tr>
@@ -12,6 +13,7 @@
   <tr>
     <td><%=h user.username %></td>
     <td><%=h user.first_name %> <%=h user.last_name %></td>
+    <td><%=h user.bet_balance %></td>
     <td><%= user.p1_counts + user.p2_counts %></td>
     <td><%=h format_date(user.last_login_at) %></td>
   </tr>

@@ -1,35 +1,9 @@
-<div id="issue-info" class="info-box">
-  <div class="info-box-title">Issue details</div>
-  <div class="info-box-content">
-    <div class="form-line">
-      <div class="prop">Priority:</div>
-      <div class="prop-value">P<%= h @issue.priority %></div>
-    </div>
-    <div class="form-line">
-      <div class="prop">Description:</div>
-      <div class="prop-value"><%= h @issue.description %></div>
-    </div>
-    <div class="form-line">
-      <div class="prop">Started at:</div>
-      <div class="prop-value"><%= h format_date @issue.occured_at %></div>
-    </div>
-    <% if @issue.bet %>
-      <hr />
-      <div class="form-line">
-        <div class="prop">Winned by:</div>
-        <div class="prop-value"><%= h @issue.user.username if @issue.user%></div>
-      </div>
-      <div class="form-line">
-        <div class="prop">Closest bet:</div>
-        <div class="prop-value"><%= h format_date @issue.bet.happens_at if @issue.bet%></div>
-      </div>
-      <div class="form-line">
-        <div class="prop">Bet placed:</div>
-        <div class="prop-value"><%= h format_date @issue.bet.created_at if @issue.bet%></div>
-      </div>
-   <% end %>
-    <div class="info-box-links">
-      <a href="/issues">Back to issues</a>
-    </div>
-  </div>
-</div>
+<h3><%= @issue.website.name %> P<%= @issue.priority %></h3>
+<%= h @issue.description %><br /><br />
+The issue <b>started at </b> <%= h format_date @issue.occured_at %>.
+<% if @issue.bet%> 
+The winner is <b><%= h @issue.user.username if @issue.user %></b>.
+The bet was placed for <%= h format_date @issue.bet.happens_at if @issue.bet %>.<br />
+<% end %>
+<br />
+<a href="/issues">Back to issues</a>

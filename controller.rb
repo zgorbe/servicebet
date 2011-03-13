@@ -96,7 +96,7 @@ get "/issues/:id" do
 end
 
 get "/members" do
-  @users = User.all(:order => [ :username.desc ])
+  @users = User.all(:order => [ :bet_balance.desc, :username.desc ])
   erb :users
 end
 
