@@ -65,9 +65,6 @@ function setnavigation() {
   } else if (url.indexOf('members') != -1) {
     navelement = document.getElementById('a_members');
     navelement.style.background="#E0EFFD";
-  } else if (url.indexOf('top') != -1) {
-    navelement = document.getElementById('a_top');
-    navelement.style.background="#E0EFFD";
   } else if (url.indexOf('login') != -1) {
     navelement = document.getElementById('a_login');
     navelement.style.background="#E0EFFD";

@@ -100,10 +100,6 @@ get "/members" do
   erb :users
 end
 
-get "/top" do
-  erb :top
-end
-
 get "/login" do
   session[:user] = nil
   erb :login, :layout => :layout_login
