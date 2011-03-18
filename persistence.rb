@@ -63,10 +63,11 @@ module ServiceBet
     end
     
     def user_bet_won(user_id)
-      user = User.get(user_id)
-      if user
-        user.update(:bet_balance => user.bet_balance + 1)
+      @user = User.get(user_id)
+      if @user
+        @user.update(:bet_balance => @user.bet_balance + 1)
       end
+      send_email(@user.email, 'You won!', erb(:congrats, :layout => false))
     end
     
     def update_winner_bet(bet)

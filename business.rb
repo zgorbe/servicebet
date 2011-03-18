@@ -7,7 +7,7 @@ module ServiceBet
       password
     end
 
-    def send_email(to_address, mail_body)
+    def send_email(to_address, mail_subject, mail_body)
       Pony.mail(:to => to_address, :via => :smtp, :via_options => {
         :address => 'smtp.gmail.com',
         :port => '587',
@@ -17,7 +17,7 @@ module ServiceBet
         :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
         :domain => "HELO", # don't know exactly what should be here
         },
-        :subject => 'Invite to ServiceBet', :body => mail_body
+        :subject => mail_subject, :body => mail_body
       )
     end
     

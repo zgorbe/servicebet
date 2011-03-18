@@ -20,7 +20,7 @@ post "/admin/users" do
   @user.updated_at = Time.now.utc
   
   if @user.save and params[:send_invite]
-     send_email(@user.email, erb(:invite, :layout => false))
+     send_email(@user.email, 'Invite to ServiceBet', erb(:invite, :layout => false))
   end
   redirect "/admin/users"
 end
@@ -48,7 +48,7 @@ post "/admin/user/reset/:id" do
   if @user
     @password = generate_password
     if reset_password(@user.id, @password)
-      send_email(@user.email, erb(:reset_password, :layout => false))
+      send_email(@user.email, 'Password reset', erb(:reset_password, :layout => false))
     end
 
   end
