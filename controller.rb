@@ -140,6 +140,10 @@ post "/pwdchange" do
   redirect "/home"
 end
 
+get "/stats" do
+  erb :stats
+end
+
 get "/hoptoad" do
   raise "Test hoptoad error"
 end
