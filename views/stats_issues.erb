@@ -1,15 +1,12 @@
-var g = new Bluff.Line('issue_stats', '400x300');
-g.title = 'My Graph';
+var g = new Bluff.Bar('issue_stats', '600x350');
+g.title = 'P1 statistics';
 g.tooltips = true;
-
-g.theme_37signals();
-
-g.data("Apples", [1, 2, 3, 4, 4, 3]);
-g.data("Oranges", [4, 8, 7, 9, 8, 9]);
-g.data("Watermelon", [2, 3, 1, 5, 6, 8]);
-g.data("Peaches", [9, 9, 10, 8, 7, 9]);
-
-g.labels = {0: '2003', 2: '2004', 4: '2005'};
-
-g.draw();
-    
+g.theme_pastel();
+g.data('p1 issues', [<%= @names_p1_counts[:counts].join(',') %>]);
+g.labels = {
+<% for i in 0..@names_p1_counts[:names].size - 1 %>
+  <%= "#{i}:'#{@names_p1_counts[:names][i]}'" %>
+  <% if i != (@names_p1_counts[:names].size - 1) %>,<% end %>
+<% end %>
+};
+g.draw();    

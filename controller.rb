@@ -144,6 +144,7 @@ get "/stats" do
   stats = params[:stats] || nil
   if stats
     if stats.eql? 'issues'
+      @names_p1_counts = get_stats_array_by_priority(1)
       erb :stats_issues, :layout => false
     end
   else

@@ -91,5 +91,15 @@ module ServiceBet
       Issue.all(:order => [:occured_at.desc], :limit => 5)
     end
     
+    def get_stats_array_by_priority(priority)
+      results = repository(:default).adapter.query("SELECT w.name, count(*) as occurance FROM issues i inner join websites w on i.website_id=w.id WHERE i.priority = #{priority} GROUP BY i.website_id ORDER BY i.website_id")
+      names_list = []
+      counts_list = []
+      results.each do |item|
+        names_list << item[:name]
+        counts_list << item[:occurance]
+      end
+      { :names => names_list, :counts => counts_list }
+    end
   end
 end
