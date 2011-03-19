@@ -141,7 +141,14 @@ post "/pwdchange" do
 end
 
 get "/stats" do
-  erb :stats
+  stats = params[:stats] || nil
+  if stats
+    if stats.eql? 'issues'
+      erb :stats_issues, :layout => false
+    end
+  else
+    erb :stats
+  end
 end
 
 get "/hoptoad" do
