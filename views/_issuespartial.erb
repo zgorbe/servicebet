@@ -1,10 +1,11 @@
 <% if @issues.size > 0 %>
-  <% if @viewingfilter.nil? or @viewingfilter.eql? '1' %>
-    <h3>Issues in this month</h3>
-  <% else %>
-    <h3>Issues in <%= @viewingfilter %></h3>
-  <% end %>
-
+  <div style="text-align:center;">
+    <% if @viewingfilter.nil? or @viewingfilter.eql? '1' %>
+      <h3>Issues in this month</h3>
+    <% else %>
+      <h3>Issues in <%= @viewingfilter %></h3>
+    <% end %>
+  </div>
   <table class="box-table-a">
     <tr>
       <th>&nbsp;</th>
