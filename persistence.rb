@@ -99,6 +99,12 @@ module ServiceBet
         names_list << item[:name]
         counts_list << item[:occurance]
       end
+      Website.all.each do |website|
+        unless names_list.include? website.name
+          names_list << website.name
+          counts_list << 0
+        end
+      end
       { :names => names_list, :counts => counts_list }
     end
   end
