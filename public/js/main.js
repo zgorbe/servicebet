@@ -87,3 +87,15 @@ function get_issue_stats() {
    }
   });
 }
+
+function get_bet_stats() {
+   $.ajax({
+   type: "GET",
+   data: "stats=bets",
+   url: '/stats',
+   success: function(data, type, xmlhttp){
+     eval(data);
+   }
+  });
+}
+

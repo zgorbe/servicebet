@@ -91,7 +91,7 @@ module ServiceBet
       Issue.all(:order => [:occured_at.desc], :limit => 5)
     end
     
-    def get_stats_array_by_priority(priority)
+    def get_stats_issues_by_priority(priority)
       results = repository(:default).adapter.query("SELECT w.name, count(*) as occurance FROM issues i inner join websites w on website_id=w.id WHERE priority = #{priority} GROUP BY website_id, w.name ORDER BY website_id")
       names_list = []
       counts_list = []
@@ -107,5 +107,23 @@ module ServiceBet
       end
       { :names => names_list, :counts => counts_list }
     end
+
+    def get_stats_bets_by_priority(priority)
+      results = repository(:default).adapter.query("SELECT w.name, count(*) as occurance FROM bets b inner join websites w on website_id=w.id WHERE priority = #{priority} GROUP BY website_id, w.name ORDER BY website_id")
+      names_list = []
+      counts_list = []
+      results.each do |item|
+        names_list << item[:name]
+        counts_list << item[:occurance]
+      end
+      Website.all.each do |website|
+        unless names_list.include? website.name
+          names_list << website.name
+          counts_list << 0
+        end
+      end
+      { :names => names_list, :counts => counts_list }
+    end
+
   end
 end

@@ -144,9 +144,13 @@ get "/stats" do
   stats = params[:stats] || nil
   if stats
     if stats.eql? 'issues'
-      @names_p1_counts = get_stats_array_by_priority(1)
-      @names_p2_counts = get_stats_array_by_priority(2)
+      @names_p1_counts = get_stats_issues_by_priority(1)
+      @names_p2_counts = get_stats_issues_by_priority(2)
       erb :stats_issues, :layout => false
+    elsif stats.eql? 'bets'
+      @names_p1_counts = get_stats_bets_by_priority(1)
+      @names_p2_counts = get_stats_bets_by_priority(2)
+      erb :stats_bets, :layout => false
     end
   else
     erb :stats
