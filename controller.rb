@@ -145,6 +145,7 @@ get "/stats" do
   if stats
     if stats.eql? 'issues'
       @names_p1_counts = get_stats_array_by_priority(1)
+      @names_p2_counts = get_stats_array_by_priority(2)
       erb :stats_issues, :layout => false
     end
   else
