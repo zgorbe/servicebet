@@ -92,7 +92,7 @@ module ServiceBet
     end
     
     def get_stats_issues_by_priority(priority)
-      results = repository(:default).adapter.query("SELECT w.name, count(i.website_id) as occurance FROM websites w left join issues i on website_id=w.id WHERE (priority = #{priority} or priority is null) GROUP BY website_id, w.name ORDER BY website_id")
+      results = repository(:default).adapter.query("SELECT w.name, count(i.website_id) as occurance FROM websites w left join issues i on website_id=w.id WHERE (priority = #{priority} or priority is null) GROUP BY website_id, w.name ORDER BY w.id")
       names_list = []
       counts_list = []
       results.each do |item|
