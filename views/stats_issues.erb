@@ -3,6 +3,7 @@ g.title = 'P1 statistics';
 g.tooltips = true;
 g.theme_pastel();
 g.data('P1 issues', [<%= @names_p1_counts[:counts].join(',') %>]);
+g.data('P2 issues', [<%= @names_p2_counts[:counts].join(',') %>]);
 g.labels = {
 <% for i in 0..@names_p1_counts[:names].size - 1 %>
   <%= "#{i}:'#{@names_p1_counts[:names][i]}'" %>
@@ -10,19 +11,6 @@ g.labels = {
 <% end %>
 };
 g.draw();
-
-var g2 = new Bluff.Bar('stats2', '740x350');
-g2.title = 'P2 statistics';
-g2.tooltips = true;
-g2.theme_pastel();
-g2.data('P2 issues', [<%= @names_p2_counts[:counts].join(',') %>]);
-g2.labels = {
-<% for i in 0..@names_p2_counts[:names].size - 1 %>
-  <%= "#{i}:'#{@names_p2_counts[:names][i]}'" %>
-  <% if i != (@names_p2_counts[:names].size - 1) %>,<% end %>
-<% end %>
-};
-g2.draw();
 
 var d = document.getElementById('stats_link');
 d.innerHTML = '<a href="#" onclick="get_bet_stats();">Bets statistics</a>'; 
