@@ -1,5 +1,5 @@
 var g = new Bluff.Bar('stats', '740x350');
-g.title = 'P1 Bets statistics';
+g.hide_title = true
 g.tooltips = true;
 g.theme_pastel();
 g.data('P1 bets', [<%= @names_p1_counts[:counts].join(',') %>]);
