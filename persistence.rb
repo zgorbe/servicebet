@@ -93,7 +93,7 @@ module ServiceBet
     
     def get_stats_issues_by_priority(priority)
       #results = repository(:default).adapter.query("SELECT w.name, count(i.website_id) as occurance FROM websites w left join issues i on website_id=w.id WHERE (priority = #{priority} or priority is null) GROUP BY w.id, w.name ORDER BY w.id")
-      results = repository(:default).adapter.query("SELECT w.name, (SELECT count(*) FROM issues i WHERE i.website_id = w.id AND i.priority = #{priority}) as occurance FROM websites w ORDER BY w.id")
+      results = repository(:default).adapter.query("SELECT w.name, count(i.website_id) as occurance FROM websites w left join issues i on website_id=w.id and i.priority = #{priority} GROUP BY w.id, w.name ORDER BY w.id")
       names_list = []
       counts_list = []
       results.each do |item|
@@ -105,7 +105,7 @@ module ServiceBet
 
     def get_stats_bets_by_priority(priority)
       #results = repository(:default).adapter.query("SELECT w.name, count(*) as occurance FROM bets b inner join websites w on website_id=w.id WHERE priority = #{priority} GROUP BY website_id, w.name ORDER BY website_id")
-      results = repository(:default).adapter.query("SELECT w.name, (SELECT count(*) FROM bets b WHERE b.website_id = w.id AND b.priority = #{priority}) as occurance FROM websites w ORDER BY w.id")      
+      results = repository(:default).adapter.query("SELECT w.name, count(b.website_id) as occurance FROM websites w left join bets b on website_id=w.id and b.priority = #{priority} GROUP BY w.id, w.name ORDER BY w.id")      
       names_list = []
       counts_list = []
       results.each do |item|
