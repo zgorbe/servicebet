@@ -1,0 +1,12 @@
+var g = new Bluff.Bar('stats', '740x350');
+g.hide_title = true
+g.tooltips = true;
+g.theme_pastel();
+g.data('Winner bets', [<%= @names_counts[:counts].join(',') %>]);
+g.labels = {
+<% for i in 0..@names_counts[:names].size - 1 %>
+  <%= "#{i}:'#{@names_counts[:names][i]}'" %>
+  <% if i != (@names_counts[:names].size - 1) %>,<% end %>
+<% end %>
+};
+g.draw();

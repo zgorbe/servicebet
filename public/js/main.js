@@ -99,3 +99,12 @@ function get_bet_stats() {
   });
 }
 
+function get_toplist_stats() {
+   $.ajax({
+   type: "GET",
+   url: '/members/toplist',
+   success: function(data, type, xmlhttp){
+     eval(data);
+   }
+  });
+}

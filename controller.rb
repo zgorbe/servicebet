@@ -96,9 +96,22 @@ get "/issues/:id" do
 end
 
 get "/members" do
-  @users = User.all(:order => [ :bet_balance.desc, :username.desc ])
+  @users = User.all(:order => [ :username.desc ])
   erb :users
 end
+
+get "/members/toplist" do
+  @users = User.all(:order => [ :username.desc ])
+  names_list = []
+  counts_list = []
+    @users.each do |user|
+      names_list << user.username
+      counts_list << user.bet_balance
+  end
+  @names_counts = { :names => names_list, :counts => counts_list }
+  erb :stats_users, :layout => false
+end
+
 
 get "/login" do
   session[:user] = nil

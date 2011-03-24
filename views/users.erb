@@ -4,7 +4,7 @@
   <tr>
     <th>User</th>
     <th>Name</th>
-    <th>Wins</th>
+    <th>Email</th>
     <th>Free bet count</th>
     <th>Last login</th>
   </tr>
@@ -13,10 +13,15 @@
   <tr>
     <td><%=h user.username %></td>
     <td><%=h user.first_name %> <%=h user.last_name %></td>
-    <td><%=h user.bet_balance %></td>
+    <td><%=h user.email %></td>
     <td><%= user.p1_counts + user.p2_counts %></td>
     <td><%=h format_date(user.last_login_at) %></td>
   </tr>
 <% end %>
 </table>
-<br />
+
+<h3>Toplist</h3>
+<canvas id="stats" width="740" height="350"></canvas>
+<script type="text/javascript">
+ get_toplist_stats();
+</script>
