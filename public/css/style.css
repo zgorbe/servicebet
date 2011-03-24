@@ -16,19 +16,20 @@ body {
 #header_container
 {
     background: #E0EFFD;
-    padding: 15px;
+    padding: 5px 0px 0px 15px;
     border-bottom: 1px solid #2E5186;
+    height: 50px;
 }
 
 #header
 {
     float: left;
 }
-#header_container h3 { margin: 0; }
 
 #logout
 {
     text-align: right;
+    padding: 5px 10px 0px;
 }
 
 #logout a {
