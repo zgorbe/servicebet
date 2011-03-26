@@ -1,0 +1,22 @@
+<div id="roadmap_nav">
+<% if @project.eql? 'servicedesk' %>
+  <img src="/images/servicedesk_s.png" alt="ServiceDesk">
+<% else %>
+  <a href="/roadmap?project=servicedesk"><img src="/images/servicedesk.png" alt="ServiceDesk"></a>
+<% end %>
+<% if @project.eql? 'ourlounge' %>
+  <img src="/images/ourlounge_s.png" alt="Ourlounge">
+<% else %>
+<a href="/roadmap?project=ourlounge"><img src="/images/ourlounge.png" alt="Ourlounge"></a>
+<% end %>
+<% if @project.eql? 'o2shops' %>
+  <img src="/images/o2shops_s.png" alt="O2Shops">
+<% else %>
+  <a href="/roadmap?project=o2shops"><img src="/images/o2shops.png" alt="O2Shops"></a>
+<% end %>
+<% if @project.eql? 'howtospendit'%>
+  <img src="/images/howtospendit_s.png" alt="HowToSpendIt">
+<% else %>
+  <a href="/roadmap?project=howtospendit"><img src="/images/howtospendit.png" alt="HowToSpendIt"></a>
+<% end %>
+</div>

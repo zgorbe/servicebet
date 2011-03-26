@@ -68,6 +68,9 @@ function setnavigation() {
   } else if (url.indexOf('stats') != -1) {
     navelement = document.getElementById('a_stats');
     navelement.style.background="#E0EFFD";
+  } else if (url.indexOf('roadmap') != -1) {
+    navelement = document.getElementById('a_roadmap');
+    navelement.style.background="#E0EFFD";
   } else if (url.indexOf('login') != -1) {
     navelement = document.getElementById('a_login');
     navelement.style.background="#E0EFFD";

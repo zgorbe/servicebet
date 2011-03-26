@@ -170,6 +170,11 @@ get "/stats" do
   end
 end
 
+get "/roadmap" do
+  @project = params[:project] || 'servicedesk'
+  erb :roadmap
+end
+
 get "/hoptoad" do
   raise "Test hoptoad error"
 end
