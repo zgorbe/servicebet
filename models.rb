@@ -17,6 +17,7 @@ class User
   
   has n, :bets
   has n, :issues
+  has n, :milestones
 end
 
 class Website
@@ -56,6 +57,32 @@ class Bet
   belongs_to :website
   belongs_to :user
   belongs_to :issue
+end
+
+class Milestone
+  include DataMapper::Resource
+  
+  property :id,            Serial
+  property :type,          String #SERVICEDESK, OURLOUNGE, O2SHOPS, HTSI
+  property :planned_at,    Time
+  property :status,        String, :default => 'NEW' #NEW, COMPLETED
+  property :title,         String
+  property :description,   Text
+  property :created_at,    Time
+  
+  belongs_to :user
+  has n, :comments
+end
+
+class Comment
+  include DataMapper::Resource
+  
+  property :id,            Serial
+  property :description,   Text
+  property :created_at,    Time
+  
+  belongs_to :user
+  belongs_to :milestone
 end
 
 DataMapper.auto_upgrade!
