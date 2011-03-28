@@ -1,9 +1,4 @@
 <div id="roadmap_nav">
-<% if @type.eql? 'servicedesk' %>
-  <b>ServiceDesk</b>
-<% else %>
-  <a href="/roadmap?type=servicedesk">ServiceDesk</a>
-<% end %>
 <% if @type.eql? 'ourlounge' %>
   <b>Ourlounge</b>
 <% else %>
@@ -18,5 +13,10 @@
   <b>HowToSpendIt</b>
 <% else %>
   <a href="/roadmap?type=howtospendit">HowToSpendIt</a>
+<% end %>
+<% if @type.eql? 'servicedesk' %>
+  <b>ServiceDesk</b>
+<% else %>
+  <a href="/roadmap?type=servicedesk">ServiceDesk</a>
 <% end %>
 </div>

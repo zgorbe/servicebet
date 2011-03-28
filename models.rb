@@ -69,6 +69,8 @@ class Milestone
   property :title,         String
   property :description,   Text
   property :created_at,    Time
+  property :modified_at,   Time
+  property :modified_by,   Integer
   
   belongs_to :user
   has n, :comments

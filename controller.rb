@@ -171,7 +171,7 @@ get "/stats" do
 end
 
 get "/roadmap" do
-  @type = params[:type] || 'servicedesk'
+  @type = params[:type] || 'ourlounge'
   erb :roadmap
 end
 
