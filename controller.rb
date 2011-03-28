@@ -40,7 +40,7 @@ end
 
 post '/bets' do
   @bet = Bet.new(params[:bet]) if params[:bet]
-  t = Time.parse(params[:happens_at] + " UTC") if params[:happens_at] and !params[:happens_at].empty?
+  t = Time.parse(params[:happens_at] + " +01:00") if params[:happens_at] and !params[:happens_at].empty?
   if t
     @bet.happens_at = t
   end
