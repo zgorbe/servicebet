@@ -27,8 +27,8 @@
   <%= partial(:milestone_form) %>
 </div>
 
+<% if @message.nil? %>
 <script type="text/javascript">
-  $('#ms_div').hide();
+    $('#ms_div').hide();
 </script>
-
-
+<% end %>

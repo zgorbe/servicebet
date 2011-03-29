@@ -1,9 +1,10 @@
+<%= @message %>
 <div id="milestone-form" class="info-box">
-  <div class="info-box-title">Creating a new milestone
+  <div class="info-box-title">Create a new milestone
     <div style="text-align: right;float: right;"><a href="#" onclick="$('#ms_div').hide('fast');">Close</a></div>
   </div>
   <fieldset>
-  <form action="/milestones" method="post">
+  <form action="/roadmap/milestones" method="post">
     <div class="info-box-content">
       <div class="form-line">
         <label for="title">Title:</label>
@@ -25,7 +26,7 @@
         <input type="text" name="planned_at" id="date_text" value="" />
       </div>
     </div>
-    <input type="hidden" id="[milestone]type" value="<%= @type %>" />
+    <input type="hidden" name="milestone[type]" value="<%= @type %>" />
     <div class="form-btn">
       <input type="submit" id="bet-btn" value="Create" />
     </div>

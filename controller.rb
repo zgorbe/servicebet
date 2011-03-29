@@ -51,7 +51,6 @@ post '/bets' do
   @bet.user = @user
   @websites = Website.all
   
-  #only validating if the date is in the current month, later the validation will only allow bets that are in the future and at least 24 hours later
   if @bet.happens_at.nil? 
     @message = 'Please set the start time of the issue!'
   elsif (@bet.happens_at - Time.now.utc) < (12 * 60 * 60)
@@ -174,6 +173,36 @@ end
 get "/roadmap" do
   @type = params[:type] || 'SERVICEDESK'
   erb :roadmap
+end
+
+post "/roadmap/milestones" do
+  @milestone = Milestone.new(params[:milestone]) if params[:milestone]
+  @type = @milestone.type
+  t = Time.parse(params[:planned_at] + " UTC") if params[:planned_at] and !params[:planned_at].empty?
+  if t
+    t = t + (60 * 60) #dirty fix for Summer time
+    @milestone.planned_at = t
+  end
+  @milestone.created_at = Time.now.utc
+  @user = User.get(session[:user])
+  @milestone.user = @user
+  
+  if @milestone.title.empty?
+    @message = 'Please set the title!'
+  elsif @milestone.description.empty?
+    @message = 'Please add a description!'
+  elsif @milestone.planned_at.nil? 
+    @message = 'Please set the due time!'
+  else
+    if @milestone.save
+      @message = 'Milestone is successfully saved!'
+    else
+      @message = 'Failed to save the milestone!'
+    end
+  end
+  
+  @milestones = Milestone.all(:type => @milestone.type, :order => [ :created_at.desc ])
+  erb :roadmap  
 end
 
 get "/hoptoad" do
