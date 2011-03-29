@@ -1,0 +1,39 @@
+<div id="milestone-form" class="info-box">
+  <div class="info-box-title">Creating a new milestone
+    <div style="text-align: right;float: right;"><a href="#" onclick="$('#ms_div').hide('fast');">Close</a></div>
+  </div>
+  <fieldset>
+  <form action="/milestones" method="post">
+    <div class="info-box-content">
+      <div class="form-line">
+        <label for="title">Title:</label>
+        <input type="text" name="milestone[title]" value="" size="42" />
+      </div>
+      <div class="form-line">
+        <label for="description">Description:</label><br /><br />
+        <textarea name="milestone[description]" rows="8" cols="52"></textarea>
+      </div>
+      <div class="form-line">
+        <label for="status">Status:</label>
+        <select name="milestone[status]">
+          <option value="NEW">New</option>
+          <option value="COMPLETED">Completed</option>
+        </select>
+      </div>
+      <div class="form-line">
+        <label for="happens_at">Due time:</label>
+        <input type="text" name="planned_at" id="date_text" value="" />
+      </div>
+    </div>
+    <input type="hidden" id="[milestone]type" value="<%= @type %>" />
+    <div class="form-btn">
+      <input type="submit" id="bet-btn" value="Create" />
+    </div>
+  </form>
+  </fieldset>
+  <script type="text/javascript">
+    $(function(){
+      $('#date_text').datepicker();
+    });
+  </script>
+</div>
