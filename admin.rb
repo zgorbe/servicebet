@@ -100,7 +100,7 @@ post "/admin/issues" do
   @issue = Issue.new(params[:issue]) if params[:issue]
   t = Time.parse(params[:occured_at] + " UTC") if params[:occured_at] and !params[:occured_at].empty?
   if t
-    t = t + (60 * 60) #dirty fix for Summer time
+    #t = t + (60 * 60) not needed?
     @issue.occured_at = t
     puts "Issue occured at: " + t.to_s
   end

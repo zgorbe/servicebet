@@ -42,7 +42,7 @@ post '/bets' do
   @bet = Bet.new(params[:bet]) if params[:bet]
   t = Time.parse(params[:happens_at] + " UTC") if params[:happens_at] and !params[:happens_at].empty?
   if t
-    t = t + (60 * 60) #dirty fix for Summer time
+    #t = t + (60 * 60) not needed?
     @bet.happens_at = t
   end
   @bet.created_at = Time.now.utc
