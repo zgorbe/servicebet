@@ -171,6 +171,7 @@ end
 
 get "/roadmap" do
   @type = params[:type] || 'SERVICEDESK'
+  @milestones = Milestone.all(:type => @type, :order => [ :created_at.desc ])
   erb :roadmap
 end
 
@@ -201,6 +202,23 @@ post "/roadmap/milestones" do
   
   @milestones = Milestone.all(:type => @milestone.type, :order => [ :created_at.desc ])
   erb :roadmap  
+end
+
+get "/roadmap/milestones/:id" do
+  @milestone = Milestone.get(params[:id])
+  erb :milestone
+end
+
+post "/roadmap/milestones/:id/comments" do
+  @milestone = Milestone.get(params[:id])
+  @comment = Comment.new(params[:comment]) if params[:comment]
+  @comment.user = User.get(session[:user])
+  @comment.created_at = Time.now
+  @milestone.comments << @comment
+
+  @milestone.save
+
+  redirect "/roadmap/milestones/#{@milestone.id}" 
 end
 
 get "/hoptoad" do

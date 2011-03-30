@@ -32,3 +32,14 @@
     $('#ms_div').hide();
 </script>
 <% end %>
+
+<% @milestones.each do |milestone| %>
+  <div class="milestones">
+    <b><%=h milestone.title %></b><br />
+    <small>Due in <%= format_date(milestone.planned_at) %>, status: <%= milestone.status %></small>
+    <hr />
+    <%=h milestone.description %><br />
+    <a href="/roadmap/milestones/<%= milestone.id %>"><small>View/Add comments (<%= milestone.comments.count %>)</small></a>
+  </div>
+  <br />
+<% end %>
