@@ -180,7 +180,7 @@ post "/roadmap/milestones" do
   @type = @milestone.type
   t = Time.parse(params[:planned_at] + " UTC") if params[:planned_at] and !params[:planned_at].empty?
   if t
-    t = t + (60 * 60) #dirty fix for Summer time
+    #t = t + (60 * 60) not needed?
     @milestone.planned_at = t
   end
   @milestone.created_at = Time.now.utc
