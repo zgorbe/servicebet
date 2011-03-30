@@ -13,7 +13,7 @@ class AssetCache
           res[1]["Cache-Control"] = data[:cache_control]
         end
         if data.has_key?(:expires)
-          res[1]["Expires"] = (Time.now + data[:expires]).utc.rfc2822
+          res[1]["Expires"] = (Time.now + data[:expires]).rfc2822
         end
         return res
       end

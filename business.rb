@@ -44,7 +44,7 @@ module ServiceBet
     end
     
     def update_bet_counts_if_necessary(user)
-      reset_bet_counts(8, user) if user.last_login_at.month != Time.now.utc.month #first login in the current month
+      reset_bet_counts(8, user) if user.last_login_at.month != Time.now.month #first login in the current month
     end
   end
 end

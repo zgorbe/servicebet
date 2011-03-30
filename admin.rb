@@ -15,9 +15,9 @@ post "/admin/users" do
   @password = generate_password
   puts "User created: #{@user.username} - #{@password}"
   @user.password = Digest::MD5.hexdigest(@password)
-  @user.last_login_at = Time.now.utc
-  @user.created_at = Time.now.utc
-  @user.updated_at = Time.now.utc
+  @user.last_login_at = Time.now
+  @user.created_at = Time.now
+  @user.updated_at = Time.now
   
   if @user.save and params[:send_invite]
      send_email(@user.email, 'Invite to ServiceBet', erb(:invite, :layout => false))
@@ -62,7 +62,7 @@ end
 
 post "/admin/websites" do
   @website = Website.new(params[:website]) if params[:website]
-  @website.created_at = Time.now.utc
+  @website.created_at = Time.now
   if @website.save
     redirect "/admin/websites"
   else
@@ -98,15 +98,13 @@ end
 
 post "/admin/issues" do
   @issue = Issue.new(params[:issue]) if params[:issue]
-  t = Time.parse(params[:occured_at] + " UTC") if params[:occured_at] and !params[:occured_at].empty?
+  t = Time.parse(params[:occured_at]) if params[:occured_at] and !params[:occured_at].empty?
   if t
-    #t = t + (60 * 60) not needed?
     @issue.occured_at = t
     puts "Issue occured at: " + t.to_s
   end
   
-  @issue.created_at = Time.now.utc
-  puts "Time.now.utc: " + @issue.created_at.to_s
+  @issue.created_at = Time.now
   
   if @issue.occured_at 
     if (@issue.occured_at <=> @issue.created_at) == 1

@@ -13,7 +13,7 @@ module ServiceBet
     def update_password(user_id, password1)
       user = User.get(user_id)
       if user
-        user.update(:password => Digest::MD5.hexdigest(password1), :pwd_change => false, :updated_at => Time.now.utc)
+        user.update(:password => Digest::MD5.hexdigest(password1), :pwd_change => false, :updated_at => Time.now)
       end
       return user
     end
@@ -21,7 +21,7 @@ module ServiceBet
     def reset_password(user_id, new_password)
       user = User.get(user_id)
       if user
-        user.update(:password => Digest::MD5.hexdigest(new_password), :pwd_change => true, :updated_at => Time.now.utc)
+        user.update(:password => Digest::MD5.hexdigest(new_password), :pwd_change => true, :updated_at => Time.now)
       end
       return user
     end
@@ -46,17 +46,17 @@ module ServiceBet
     
     #This method returns the bets that are created in the current month
     #if year and month is not passed, then the current year and month is used
-    def get_bets_for_month_by_condition(condition={}, year=Time.now.utc.year, month=Time.now.utc.month)
-      t1 = Time.parse(Date.new(year, month, 1).to_s + " 00:00:00 UTC")
-      t2 = Time.parse(Date.new(year, month, -1).to_s + " 23:59:59 UTC")
+    def get_bets_for_month_by_condition(condition={}, year=Time.now.year, month=Time.now.month)
+      t1 = Time.parse(Date.new(year, month, 1).to_s + " 00:00:00")
+      t2 = Time.parse(Date.new(year, month, -1).to_s + " 23:59:59")
       condition[:created_at.gt] = t1
       condition[:created_at.lt] = t2
       Bet.all(condition)
     end
     #The same as the above method, just for issues
-    def get_issues_for_month_by_condition(condition={}, year=Time.now.utc.year, month=Time.now.utc.month)
-      t1 = Time.parse(Date.new(year, month, 1).to_s + " 00:00:00 UTC")
-      t2 = Time.parse(Date.new(year, month, -1).to_s + " 23:59:59 UTC")
+    def get_issues_for_month_by_condition(condition={}, year=Time.now.year, month=Time.now.month)
+      t1 = Time.parse(Date.new(year, month, 1).to_s + " 00:00:00")
+      t2 = Time.parse(Date.new(year, month, -1).to_s + " 23:59:59")
       condition[:occured_at.gt] = t1
       condition[:occured_at.lt] = t2
       Issue.all(condition)
@@ -75,7 +75,7 @@ module ServiceBet
     end
     
     def update_last_login(user)
-      user.update(:last_login_at => Time.now.utc)
+      user.update(:last_login_at => Time.now)
     end
     
     def update_outdated_bets()
