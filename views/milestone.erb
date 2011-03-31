@@ -1,0 +1,25 @@
+<h3><%=h @milestone.title %></h3>
+<small>Due in <%= format_date(@milestone.planned_at) %>, status: <%= @milestone.status %></small>
+<hr />
+<%=h @milestone.description %>
+<br /><br />
+<% @milestone.comments.each do |comment| %>
+  <%=h comment.description %><br />
+  <small>Created by <%= comment.user.username %>,<%= format_date(comment.created_at) %></small><br /><br />
+<% end %>
+<div id="comment-form" class="info-box">
+  <div class="info-box-title">Add a comment</div>
+  <fieldset>
+  <form action="/roadmap/milestones/<%= @milestone.id %>/comments" method="post">
+    <div class="info-box-content">
+      <div class="form-line">
+        <label for="description">Description:</label><br /><br />
+        <textarea name="comment[description]" rows="8" cols="52"></textarea>
+      </div>
+    </div>
+    <div class="form-btn">
+      <input type="submit" id="bet-btn" value="Add comment" />
+    </div>
+  </form>
+  </fieldset>
+</div>

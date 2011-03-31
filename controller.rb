@@ -40,12 +40,11 @@ end
 
 post '/bets' do
   @bet = Bet.new(params[:bet]) if params[:bet]
-  t = Time.parse(params[:happens_at] + " UTC") if params[:happens_at] and !params[:happens_at].empty?
+  t = Time.parse(params[:happens_at]) if params[:happens_at] and !params[:happens_at].empty?
   if t
-    #t = t + (60 * 60) not needed?
     @bet.happens_at = t
   end
-  @bet.created_at = Time.now.utc
+  @bet.created_at = Time.now
   
   @user = User.get(session[:user])
   @bet.user = @user
@@ -53,9 +52,9 @@ post '/bets' do
   
   if @bet.happens_at.nil? 
     @message = 'Please set the start time of the issue!'
-  elsif (@bet.happens_at - Time.now.utc) < (12 * 60 * 60)
+  elsif (@bet.happens_at - Time.now) < (12 * 60 * 60)
     @message = 'You can place bets only later than 12 hours!'
-  elsif @bet.happens_at.month != Time.now.utc.month
+  elsif @bet.happens_at.month != Time.now.month
     @message = 'You can only place bets for the current month!'
   else
     @bet.issue_id = 0
@@ -172,18 +171,18 @@ end
 
 get "/roadmap" do
   @type = params[:type] || 'SERVICEDESK'
+  @milestones = Milestone.all(:type => @type, :order => [ :created_at.desc ])
   erb :roadmap
 end
 
 post "/roadmap/milestones" do
   @milestone = Milestone.new(params[:milestone]) if params[:milestone]
   @type = @milestone.type
-  t = Time.parse(params[:planned_at] + " UTC") if params[:planned_at] and !params[:planned_at].empty?
+  t = Time.parse(params[:planned_at]) if params[:planned_at] and !params[:planned_at].empty?
   if t
-    t = t + (60 * 60) #dirty fix for Summer time
     @milestone.planned_at = t
   end
-  @milestone.created_at = Time.now.utc
+  @milestone.created_at = Time.now
   @user = User.get(session[:user])
   @milestone.user = @user
   
@@ -203,6 +202,23 @@ post "/roadmap/milestones" do
   
   @milestones = Milestone.all(:type => @milestone.type, :order => [ :created_at.desc ])
   erb :roadmap  
+end
+
+get "/roadmap/milestones/:id" do
+  @milestone = Milestone.get(params[:id])
+  erb :milestone
+end
+
+post "/roadmap/milestones/:id/comments" do
+  @milestone = Milestone.get(params[:id])
+  @comment = Comment.new(params[:comment]) if params[:comment]
+  @comment.user = User.get(session[:user])
+  @comment.created_at = Time.now
+  @milestone.comments << @comment
+
+  @milestone.save
+
+  redirect "/roadmap/milestones/#{@milestone.id}" 
 end
 
 get "/hoptoad" do

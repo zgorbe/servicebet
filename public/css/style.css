@@ -108,7 +108,9 @@ body {
     text-align: right;
     font-size: 14px;
 }
-
+.milestones {
+    padding-bottom: 20px;
+}
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header{ margin-bottom: 5px; }
 .ui-timepicker-div dl{ text-align: left; }
