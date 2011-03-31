@@ -13,7 +13,7 @@ module ServiceBet
         :port => '587',
         :enable_starttls_auto => true,
         :user_name => 'epamrazor',
-        :password => 'Ep4mR4z0r',
+        :password => 'b3c4r3ful',
         :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
         :domain => "HELO", # don't know exactly what should be here
         },
