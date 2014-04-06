@@ -63,7 +63,7 @@ class Milestone
   include DataMapper::Resource
   
   property :id,            Serial
-  property :type,          String #SERVICEDESK, OURLOUNGE, O2SHOPS, HOWTOSPENDIT
+  property :type,          String
   property :planned_at,    Time
   property :status,        String, :default => 'NEW' #NEW, COMPLETED
   property :title,         String
